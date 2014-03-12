@@ -28,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <GenerateDocumentation>true</GenerateDocumentation>
+    <GenerateDocumentation>True</GenerateDocumentation>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,9 +42,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="iOSSimpleStorage.cs" />
-    <Compile Include="..\SimpleStorage.Shared\SimpleStorage.cs">
+    <Compile Include="..\..\..\..\Shared\Storage\SimpleStorage.cs">
       <Link>SimpleStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\iOS\Storage\iOSSimpleStorage.cs">
+      <Link>iOSSimpleStorage.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>
