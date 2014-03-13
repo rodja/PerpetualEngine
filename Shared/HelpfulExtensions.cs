@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace AppBase
+namespace PerpetualEngine
 {
     public static class HelpfulExtensions
     {

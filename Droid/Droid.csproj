@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Android.NUnitLite" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -53,9 +52,6 @@
     </Compile>
     <Compile Include="..\Shared\Storage\SimpleStorage.cs">
       <Link>Shared\Storage\SimpleStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\Tests.cs">
-      <Link>Shared\Storage\Tests.cs</Link>
     </Compile>
     <Compile Include="..\Shared\HelpfulExtensions.cs">
       <Link>Shared\HelpfulExtensions.cs</Link>
