@@ -56,5 +56,8 @@
     <Compile Include="..\Shared\Storage\SimpleStorage.cs">
       <Link>Shared\Storage\SimpleStorage.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\HelpfulExtensions.cs">
+      <Link>Shared\HelpfulExtensions.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

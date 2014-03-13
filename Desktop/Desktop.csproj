@@ -51,6 +51,9 @@
     <Compile Include="..\Shared\Storage\Tests.cs">
       <Link>Shared\Storage\Tests.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\HelpfulExtensions.cs">
+      <Link>Shared\HelpfulExtensions.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
