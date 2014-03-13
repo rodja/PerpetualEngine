@@ -56,6 +56,9 @@
     <Compile Include="..\Shared\HelpfulExtensions.cs">
       <Link>Shared\HelpfulExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Storage\PersistentList.cs">
+      <Link>Shared\Storage\PersistentList.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -38,10 +38,15 @@ namespace PerpetualEngine.Storage
         /// <param name="value">if value is null, the key will be deleted</param>
         override public void Put(string key, string value)
         {
-            if (value == null)
+            if (value == null) {
                 Delete(key);
-            else
-                database.Add(Group + "_" + key, value);
+                return;
+            }
+            var id = Group + "_" + key;
+            if (database.ContainsKey(id))
+                database.Remove(id);
+
+            database.Add(id, value);
         }
 
         /// <summary>
