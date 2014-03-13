@@ -26,6 +26,18 @@ namespace PerpetualEngine.Storage
                 Assert.AreEqual(a.Id, deserializationCount);
         }
 
+        [Test()]
+        public void TestReverseIterating()
+        {
+            var list = new PersistentList<A>(Guid.NewGuid().ToString());
+            list.Add("1", new A(1));
+            list.Add("2", new A(2));
+            list.Add("3", new A(3));
+            int count = 3;
+            foreach (var a in list.Reverse())
+                Assert.AreEqual(a.Id, count--);
+        }
+
         [Serializable]
         class A: IDeserializationCallback
         {

@@ -2,20 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using IdList = System.Collections.Generic.List<string>;
 
 namespace PerpetualEngine.Storage
 {
     public class PersistentList<T>: IEnumerable, IEnumerable<T>
     {
         SimpleStorage storage;
-        IdList ids;
         const string idListKey = "ids";
+        List<string> ids;
+        List<T> items = new List<T>();
 
         public PersistentList(string editGroup)
         {
             storage = SimpleStorage.EditGroup(editGroup);
-            ids = storage.Get<IdList>(idListKey) ?? new IdList();
+            ids = storage.Get<List<string>>(idListKey) ?? new List<string>();
         }
 
         public void Add(string id, T value)
@@ -53,7 +53,7 @@ namespace PerpetualEngine.Storage
 
         public List<T> ValidateAndLoad()
         {
-            var obsoleteIds = new IdList();
+            var obsoleteIds = new List<string>();
             var result = new List<T>();
             foreach (var id in ids) {
                 var value = storage.Get<T>(id);
@@ -74,13 +74,20 @@ namespace PerpetualEngine.Storage
             return result;
         }
 
+        public IEnumerable<T> Reverse()
+        {
+            var list = ValidateAndLoad();
+            list.Reverse();
+            return list;
+        }
+
         public void Clear()
         {
             foreach (var id in ids) {
                 storage.Delete(id);
             }
             storage.Delete(idListKey);
-            ids = new IdList();
+            ids = new List<string>();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
