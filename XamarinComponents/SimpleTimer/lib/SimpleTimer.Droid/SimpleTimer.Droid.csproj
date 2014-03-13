@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="..\SimpleTimer.Shared\SimpleTimer.cs">
+    <Compile Include="..\..\..\..\Shared\SimpleTimer.cs">
       <Link>SimpleTimer.cs</Link>
     </Compile>
-    <Compile Include="DroidSimpleTimer.cs" />
+    <Compile Include="..\..\..\..\Droid\DroidSimpleTimer.cs">
+      <Link>DroidSimpleTimer.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

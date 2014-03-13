@@ -42,10 +42,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="iOSSimpleTimer.cs" />
-    <Compile Include="..\SimpleTimer.Shared\SimpleTimer.cs">
+    <Compile Include="..\..\..\..\iOS\ApplicationActivationListener.cs">
+      <Link>ApplicationActivationListener.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\iOS\iOSSimpleTimer.cs">
+      <Link>iOSSimpleTimer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Shared\SimpleTimer.cs">
       <Link>SimpleTimer.cs</Link>
     </Compile>
-    <Compile Include="ApplicationActivationListener.cs" />
   </ItemGroup>
 </Project>
