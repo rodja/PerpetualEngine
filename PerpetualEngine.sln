@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS", "iOS\iOS.csproj", "{53E80655-9589-4B19-8A78-51084EE977E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid", "Droid\Droid.csproj", "{56F680A8-D066-4F55-922A-8D28AEB598BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,13 +17,17 @@ Global
 		{53E80655-9589-4B19-8A78-51084EE977E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53E80655-9589-4B19-8A78-51084EE977E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53E80655-9589-4B19-8A78-51084EE977E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\iOS.csproj
+		StartupItem = Droid\Droid.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
