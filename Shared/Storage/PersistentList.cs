@@ -10,7 +10,6 @@ namespace PerpetualEngine.Storage
         SimpleStorage storage;
         const string idListKey = "ids";
         List<string> ids;
-        List<T> items = new List<T>();
 
         public PersistentList(string editGroup)
         {
@@ -51,36 +50,6 @@ namespace PerpetualEngine.Storage
             storage.Put(idListKey, ids);
         }
 
-        public List<T> ValidateAndLoad()
-        {
-            var obsoleteIds = new List<string>();
-            var result = new List<T>();
-            foreach (var id in ids) {
-                var value = storage.Get<T>(id);
-                if (value != null) {
-                    result.Add(value);
-                } else
-                    obsoleteIds.Add(id);
-            }
-
-            if (obsoleteIds.Count > 0) {
-                foreach (var id in obsoleteIds) {
-                    storage.Delete(id);
-                    ids.Remove(id);
-                    storage.Put(idListKey, ids);
-                }
-            }
-
-            return result;
-        }
-
-        public IEnumerable<T> Reverse()
-        {
-            var list = ValidateAndLoad();
-            list.Reverse();
-            return list;
-        }
-
         public void Clear()
         {
             foreach (var id in ids) {
@@ -92,14 +61,58 @@ namespace PerpetualEngine.Storage
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            foreach (var i in ids)
-                yield return storage.Get<T>(i);
+            var obsoleteIds = new List<string>();
+            foreach (var i in ids) {
+                var item = storage.Get<T>(i);
+                if (item == null) {
+                    obsoleteIds.Add(i);
+                    continue;
+                }
+                yield return item;
+            }
+
+            Remove(obsoleteIds);
         }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            foreach (var i in ids)
-                yield return storage.Get<T>(i);
+            var obsoleteIds = new List<string>();
+            foreach (var i in ids) {
+                var item = storage.Get<T>(i);
+                if (item == null) {
+                    obsoleteIds.Add(i);
+                    continue;
+                }
+                yield return item;
+            }
+
+            Remove(obsoleteIds);
+        }
+
+        public IEnumerable<T> Reverse()
+        {
+            var obsoleteIds = new List<string>();
+            for (int i = ids.Count - 1; i >= 0; i--) {
+                var item = storage.Get<T>(ids[i]);
+                if (item == null) {
+                    obsoleteIds.Add(ids[i]);
+                    continue;
+                }
+                yield return item;
+            }
+
+            Remove(obsoleteIds);
+        }
+
+        void Remove(List<string> obsoleteIds)
+        {
+            if (obsoleteIds.Count > 0) {
+                foreach (var id in obsoleteIds) {
+                    storage.Delete(id);
+                    ids.Remove(id);
+                    storage.Put(idListKey, ids);
+                }
+            }
         }
     }
 }

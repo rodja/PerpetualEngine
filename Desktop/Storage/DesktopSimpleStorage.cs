@@ -17,7 +17,7 @@ namespace PerpetualEngine.Storage
 
         public void Clear()
         {
-            (this as DesktopSimpleStorage).database.Clear();
+            DesktopSimpleStorage.database.Clear();
         }
     }
 
@@ -26,7 +26,7 @@ namespace PerpetualEngine.Storage
     /// </summary>
     public class DesktopSimpleStorage : SimpleStorage
     {
-        public Dictionary<string,string> database = new Dictionary<string,string>();
+        public static Dictionary<string,string> database = new Dictionary<string,string>();
 
         public DesktopSimpleStorage(string groupName) : base(groupName)
         {
@@ -43,6 +43,7 @@ namespace PerpetualEngine.Storage
                 return;
             }
             var id = Group + "_" + key;
+            Console.WriteLine("saving " + value.Ellipsis(8) + " with id " + id);
             if (database.ContainsKey(id))
                 database.Remove(id);
 
@@ -56,7 +57,10 @@ namespace PerpetualEngine.Storage
         override public string Get(string key)
         {
             try {
-                return database[Group + "_" + key];
+                var data = database[Group + "_" + key];
+                Console.WriteLine("loading " + data.Ellipsis(8) + " from id " + Group + "_" + key);
+
+                return data;
             } catch (KeyNotFoundException e) {
                 return null;
             }
