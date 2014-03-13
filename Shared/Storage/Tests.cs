@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using System;
-using NUnit.Framework.SyntaxHelpers;
 
 namespace PerpetualEngine.Storage
 {
