@@ -35,15 +35,27 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.NUnitLite" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Storage\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Shared\Storage\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="ApplicationActivationListener.cs" />
     <Compile Include="iOSSimpleTimer.cs" />
     <Compile Include="Storage\iOSSimpleStorage.cs" />
+    <Compile Include="..\Shared\SimpleTimer.cs">
+      <Link>Shared\SimpleTimer.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Storage\SimpleStorage.cs">
+      <Link>Shared\Storage\SimpleStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Storage\Tests.cs">
+      <Link>Shared\Storage\Tests.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>
