@@ -1,12 +1,12 @@
 using NUnit.Framework;
 using System;
+using NUnit.Framework.SyntaxHelpers;
 
 namespace PerpetualEngine.Storage
 {
     [TestFixture()]
     public partial class SimpleStorageTests
     {
-
         [Test()]
         public void testSavingString()
         {
