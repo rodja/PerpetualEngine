@@ -38,7 +38,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\ExternalDlls\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="MonoTouch.NUnitLite" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -56,9 +55,6 @@
     </Compile>
     <Compile Include="..\Shared\Storage\SimpleStorage.cs">
       <Link>Shared\Storage\SimpleStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\Tests.cs">
-      <Link>Shared\Storage\Tests.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>
