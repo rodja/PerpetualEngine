@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}"
@@ -38,32 +38,33 @@ Global
 		$2.EolMarker = Unix
 		$2.inheritsSet = VisualStudio
 		$2.inheritsScope = text/plain
-		$2.scope = text/plain
-		$0.TextStylePolicy = $3
-		$3.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.IndentSwitchBody = True
+		$3.BeforeMethodDeclarationParentheses = False
+		$3.BeforeMethodCallParentheses = False
+		$3.BeforeConstructorDeclarationParentheses = False
+		$3.BeforeIndexerDeclarationBracket = False
+		$3.BeforeDelegateDeclarationParentheses = False
+		$3.AfterDelegateDeclarationParameterComma = True
+		$3.NewParentheses = False
+		$3.SpacesBeforeBrackets = False
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
 		$3.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $4
-		$4.IndentSwitchBody = True
-		$4.AlignEmbeddedUsingStatements = False
-		$4.AlignEmbeddedIfStatements = False
-		$4.BeforeMethodDeclarationParentheses = False
-		$4.BeforeMethodCallParentheses = False
-		$4.BeforeConstructorDeclarationParentheses = False
-		$4.BeforeIndexerDeclarationBracket = False
-		$4.BeforeDelegateDeclarationParentheses = False
-		$4.AfterDelegateDeclarationParameterComma = True
-		$4.NewParentheses = False
-		$4.SpacesBeforeBrackets = False
-		$4.SpacesAfterTypecast = True
-		$4.AlignToFirstMethodDeclarationParameter = False
-		$4.inheritsSet = Mono
-		$4.inheritsScope = text/x-csharp
-		$4.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 120
+		$4.NoTabsAfterNonTabs = True
+		$4.EolMarker = Unix
+		$4.inheritsSet = VisualStudio
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
 		$0.TextStylePolicy = $5
 		$5.inheritsSet = null
-		$5.scope = application/t4-template
-		$0.TextStylePolicy = $6
-		$6.inheritsSet = null
-		$6.scope = application/json
+		$5.scope = application/xml
+		$0.XmlFormattingPolicy = $6
+		$6.inheritsSet = Mono
+		$6.inheritsScope = application/xml
+		$6.scope = application/xml
 	EndGlobalSection
 EndGlobal
