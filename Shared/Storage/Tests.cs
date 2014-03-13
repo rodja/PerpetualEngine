@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework;
-using NUnit.Framework.SyntaxHelpers;
 
 namespace PerpetualEngine.Storage
 {
@@ -12,7 +11,7 @@ namespace PerpetualEngine.Storage
         {
             var storage = SimpleStorage.EditGroup(Guid.NewGuid().ToString());
             storage.Put("test-key", "22");
-            Assert.That("22", Is.EqualTo(storage.Get("test-key")));
+            Assert.AreEqual("22", storage.Get("test-key"));
         }
     }
 }
