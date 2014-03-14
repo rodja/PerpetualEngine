@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PerpetualEngine.Storage
 {
-    public class PersistentList<T> : IEnumerable, IEnumerable<T> where T : IIdentifiable
+    public class PersistentList<T> : IEnumerable, IEnumerable<T>
     {
         SimpleStorage storage;
         const string idListKey = "ids";
@@ -39,21 +39,33 @@ namespace PerpetualEngine.Storage
 
         public int Count { get { return items.Count; } }
 
+        public void Add(string id, T value)
+        {
+            Insert(ids.Count, id, value);
+        }
+
         public void Add(T value)
         {
             Insert(ids.Count, value);
         }
 
-        public void Insert(int index, T value)
+        public void Insert(int index, string id, T value)
         {
-            if (value.Id == idListKey)
+            if (id == idListKey)
                 throw new ApplicationException("The id must not be \"" + idListKey + "\".");
-            if (ids.Contains(value.Id))
-                throw new ApplicationException("Object with id \"" + value.Id + "\" already exists.");
-            storage.Put(value.Id, value);
-            ids.Insert(index, value.Id);
+            if (ids.Contains(id))
+                throw new ApplicationException("Object with id \"" + id + "\" already exists.");
+            storage.Put(id, value);
+            ids.Insert(index, id);
             storage.Put(idListKey, ids);
             items.Add(value);
+        }
+
+        public void Insert(int index, T value)
+        {
+            if (!(value is IIdentifiable))
+                throw new NotSupportedException("Value must implement IIdentifiable");
+            Insert(index, (value as IIdentifiable).Id, value);
         }
 
         /// <summary>
