@@ -62,5 +62,8 @@
     <Compile Include="..\Shared\Storage\PersistentList.cs">
       <Link>Shared\Storage\PersistentList.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Storage\IIdentifiable.cs">
+      <Link>Shared\Storage\IIdentifiable.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

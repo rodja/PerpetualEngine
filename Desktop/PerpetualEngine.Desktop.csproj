@@ -60,6 +60,9 @@
     <Compile Include="..\Shared\Storage\PersistenListTests.cs">
       <Link>Shared\Storage\PersistenListTests.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Storage\IIdentifiable.cs">
+      <Link>Shared\Storage\IIdentifiable.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

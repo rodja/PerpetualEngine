@@ -19,9 +19,9 @@ namespace PerpetualEngine.Storage
         PersistentList<A> BuildTestList()
         {
             var list = new PersistentList<A>(editGroup);
-            list.Add("1", new A(1));
-            list.Add("2", new A(2));
-            list.Add("3", new A(3));
+            list.Add(new A("1"));
+            list.Add(new A("2"));
+            list.Add(new A("3"));
             return list;
         }
 
@@ -32,7 +32,7 @@ namespace PerpetualEngine.Storage
             list = new PersistentList<A>(editGroup);
             var i = 1;
             foreach (var a in list)
-                Assert.AreEqual(a.Id, i++);
+                Assert.AreEqual(a.Id, i++.ToString());
             Assert.AreEqual(3, list.Count);
         }
 
@@ -42,7 +42,7 @@ namespace PerpetualEngine.Storage
             var list = BuildTestList();
             int count = 3;
             foreach (var a in list.Reverse()) {
-                Assert.AreEqual(count--, a.Id);
+                Assert.AreEqual(count--.ToString(), a.Id);
             }
             Assert.AreEqual(0, count);
         }
@@ -57,7 +57,7 @@ namespace PerpetualEngine.Storage
 
             int count = 0;
             foreach (var a in list)
-                Assert.AreEqual(a.Id, ++count + (count > 1 ? 1 : 0));
+                Assert.AreEqual(a.Id, (++count + (count > 1 ? 1 : 0)).ToString());
             Assert.AreEqual(2, count);
             Assert.AreEqual(2, list.Count);
 
@@ -75,11 +75,11 @@ namespace PerpetualEngine.Storage
         }
 
         [Serializable]
-        class A
+        class A : IIdentifiable
         {
-            public int Id;
+            public string Id { get; set; }
 
-            public A(int id)
+            public A(string id)
             {
                 Id = id;
             }
