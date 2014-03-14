@@ -56,7 +56,7 @@ namespace PerpetualEngine.Storage
                 storage.Delete(id);
             }
             storage.Delete(idListKey);
-            ids = new List<string>();
+            ids.Clear();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
