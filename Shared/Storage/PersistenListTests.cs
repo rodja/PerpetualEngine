@@ -68,6 +68,14 @@ namespace PerpetualEngine.Storage
                 "the internal object-index should automaticly remove the broken id");
         }
 
+        [Test()]
+        public void TestKeepingInstancesAlive()
+        {
+            var list = BuildTestList();
+            Assert.IsTrue(object.ReferenceEquals(list[1], list[1]));
+            Assert.AreEqual(0, deserializationCount);
+        }
+
         [Serializable]
         class A: IDeserializationCallback
         {

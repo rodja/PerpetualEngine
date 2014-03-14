@@ -61,7 +61,7 @@ namespace PerpetualEngine.Storage
                 Console.WriteLine("loading " + data.Ellipsis(8) + " from id " + Group + "_" + key);
 
                 return data;
-            } catch (KeyNotFoundException e) {
+            } catch (KeyNotFoundException) {
                 return null;
             }
         }

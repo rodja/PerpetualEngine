@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace PerpetualEngine.Storage
 {
@@ -10,11 +11,30 @@ namespace PerpetualEngine.Storage
         SimpleStorage storage;
         const string idListKey = "ids";
         List<string> ids;
+        List<T> items = new List<T>();
 
         public PersistentList(string editGroup)
         {
             storage = SimpleStorage.EditGroup(editGroup);
             ids = storage.Get<List<string>>(idListKey) ?? new List<string>();
+
+            var obsoleteIds = new List<string>();
+            foreach (var i in ids) {
+                var item = storage.Get<T>(i);
+                if (item == null) {
+                    obsoleteIds.Add(i);
+                    continue;
+                }
+                items.Add(item);
+            }
+
+            if (obsoleteIds.Count > 0) {
+                foreach (var id in obsoleteIds) {
+                    storage.Delete(id);
+                    ids.Remove(id);
+                    storage.Put(idListKey, ids);
+                }
+            }
         }
 
         public void Add(string id, T value)
@@ -31,6 +51,7 @@ namespace PerpetualEngine.Storage
             storage.Put(id, value);
             ids.Insert(index, id);
             storage.Put(idListKey, ids);
+            items.Add(value);
         }
 
         /// <summary>
@@ -46,6 +67,7 @@ namespace PerpetualEngine.Storage
         public void Remove(string id)
         {
             storage.Delete(id);
+            items.RemoveAt(ids.IndexOf(id));
             ids.Remove(id);
             storage.Put(idListKey, ids);
         }
@@ -57,61 +79,28 @@ namespace PerpetualEngine.Storage
             }
             storage.Delete(idListKey);
             ids.Clear();
+            items.Clear();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            var obsoleteIds = new List<string>();
-            foreach (var i in ids) {
-                var item = storage.Get<T>(i);
-                if (item == null) {
-                    obsoleteIds.Add(i);
-                    continue;
-                }
-                yield return item;
-            }
-
-            Remove(obsoleteIds);
+            return items.GetEnumerator();
         }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            var obsoleteIds = new List<string>();
-            foreach (var i in ids) {
-                var item = storage.Get<T>(i);
-                if (item == null) {
-                    obsoleteIds.Add(i);
-                    continue;
-                }
-                yield return item;
-            }
-
-            Remove(obsoleteIds);
+            return items.GetEnumerator();
         }
 
         public IEnumerable<T> Reverse()
         {
-            var obsoleteIds = new List<string>();
-            for (int i = ids.Count - 1; i >= 0; i--) {
-                var item = storage.Get<T>(ids[i]);
-                if (item == null) {
-                    obsoleteIds.Add(ids[i]);
-                    continue;
-                }
-                yield return item;
-            }
-
-            Remove(obsoleteIds);
+            for (int i = items.Count - 1; i >= 0; i--)
+                yield return items[i];
         }
 
-        void Remove(List<string> obsoleteIds)
-        {
-            if (obsoleteIds.Count > 0) {
-                foreach (var id in obsoleteIds) {
-                    storage.Delete(id);
-                    ids.Remove(id);
-                    storage.Put(idListKey, ids);
-                }
+        public T this[int index] {
+            get {
+                return items[index];
             }
         }
     }
