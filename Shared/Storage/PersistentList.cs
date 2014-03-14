@@ -37,6 +37,8 @@ namespace PerpetualEngine.Storage
             }
         }
 
+        public int Count { get { return items.Count; } }
+
         public void Add(string id, T value)
         {
             Insert(ids.Count, id, value);
@@ -57,11 +59,11 @@ namespace PerpetualEngine.Storage
         /// <summary>
         /// Updates item with specified Id or adds it to the list.
         /// </summary>
-        public void Update(string id, T value)
+        public void Update(string id)
         {
             if (!ids.Contains(id))
                 throw new ApplicationException("Object with id \"" + id + "\" does not exist.");
-            storage.Put(id, value);
+            storage.Put(id, items[ids.IndexOf(id)]);
         }
 
         public void Remove(string id)

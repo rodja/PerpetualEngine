@@ -8,13 +8,11 @@ namespace PerpetualEngine.Storage
     [TestFixture()]
     public class PersistenListTests
     {
-        static int deserializationCount = 0;
         string editGroup;
 
         [SetUp]
         public void Setup()
         {
-            deserializationCount = 0;
             editGroup = Guid.NewGuid().ToString();
         }
 
@@ -28,12 +26,14 @@ namespace PerpetualEngine.Storage
         }
 
         [Test()]
-        public void TestLazyLoadingOfObjectsFromPersitence()
+        public void TestLoadingOfObjectsFromPersitence()
         {
             var list = BuildTestList();
+            list = new PersistentList<A>(editGroup);
+            var i = 1;
             foreach (var a in list)
-                Assert.AreEqual(a.Id, deserializationCount);
-            Assert.AreEqual(3, deserializationCount);
+                Assert.AreEqual(a.Id, i++);
+            Assert.AreEqual(3, list.Count);
         }
 
         [Test()]
@@ -43,8 +43,6 @@ namespace PerpetualEngine.Storage
             int count = 3;
             foreach (var a in list.Reverse()) {
                 Assert.AreEqual(count--, a.Id);
-                Assert.AreEqual(a.Id, 4 - deserializationCount, 
-                    "should also lazy load objects from persistence");
             }
             Assert.AreEqual(0, count);
         }
@@ -55,12 +53,13 @@ namespace PerpetualEngine.Storage
             var list = BuildTestList();
             var storage = SimpleStorage.EditGroup(editGroup);
             storage.Put("2", "break data with id 2");
+            list = new PersistentList<A>(editGroup);
 
             int count = 0;
             foreach (var a in list)
                 Assert.AreEqual(a.Id, ++count + (count > 1 ? 1 : 0));
             Assert.AreEqual(2, count);
-            Assert.AreEqual(2, deserializationCount);
+            Assert.AreEqual(2, list.Count);
 
             Assert.IsFalse(storage.HasKey("2"),
                 "the broken object should atomaticly be removed");
@@ -73,24 +72,16 @@ namespace PerpetualEngine.Storage
         {
             var list = BuildTestList();
             Assert.IsTrue(object.ReferenceEquals(list[1], list[1]));
-            Assert.AreEqual(0, deserializationCount);
         }
 
         [Serializable]
-        class A: IDeserializationCallback
+        class A
         {
             public int Id;
 
             public A(int id)
             {
                 Id = id;
-                Console.WriteLine("A created with id " + id);
-            }
-
-            public virtual void OnDeserialization(object sender)
-            {
-                deserializationCount++;
-                Console.WriteLine("A deserialized with id " + Id);
             }
         }
     }
