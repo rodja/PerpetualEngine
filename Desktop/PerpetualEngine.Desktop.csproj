@@ -38,6 +38,9 @@
     <Reference Include="nunit.core.extensions, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
     <Reference Include="nunit.core.interfaces, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
     <Reference Include="nunit.framework.extensions, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\ExternalDlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +65,9 @@
     </Compile>
     <Compile Include="..\Shared\Storage\IIdentifiable.cs">
       <Link>Shared\Storage\IIdentifiable.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Storage\JsonPersistingList.cs">
+      <Link>Shared\Storage\JsonPersistingList.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

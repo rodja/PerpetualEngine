@@ -2,6 +2,8 @@
 using System;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace PerpetualEngine.Storage
 {
@@ -74,6 +76,18 @@ namespace PerpetualEngine.Storage
             Assert.IsTrue(object.ReferenceEquals(list[1], list[1]));
         }
 
+        [Test()]
+        public void TestUsingJsonPersistingList()
+        {
+            var list = new JsonPersistingList<A>(editGroup);
+            list.Add(new A("test"));
+            Assert.AreEqual("{\"Id\":\"test\"}", SimpleStorage.EditGroup(editGroup).Get("test"));
+
+            list = new JsonPersistingList<A>(editGroup);
+            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual("test", list.First().Id);
+        }
+
         [Serializable]
         class A : IIdentifiable
         {
@@ -84,6 +98,26 @@ namespace PerpetualEngine.Storage
                 Id = id;
             }
         }
+
+        [Serializable]
+        class SomethingWhichShouldBeStoredAsJson : IIdentifiable, ISerializable
+        {
+            public string Id { get; set; }
+
+            public SomethingWhichShouldBeStoredAsJson(string id)
+            {
+                Id = id;
+            }
+
+            public SomethingWhichShouldBeStoredAsJson(SerializationInfo info, StreamingContext context)
+            {
+                Id = JsonConvert.DeserializeObject<SomethingWhichShouldBeStoredAsJson>(info.GetString("json")).Id;
+            }
+
+            public void GetObjectData(SerializationInfo info, StreamingContext context)
+            {
+                info.AddValue("json", JsonConvert.SerializeObject(this));
+            }
+        }
     }
 }
-

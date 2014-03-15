@@ -13,29 +13,33 @@ namespace PerpetualEngine.Storage
         List<string> ids;
         List<T> items = new List<T>();
 
-        public PersistentList(string editGroup)
+        public PersistentList(string editGroup, Func<T, string> serialize = null, Func<string, T> deserialize = null)
         {
             storage = SimpleStorage.EditGroup(editGroup);
             ids = storage.Get<List<string>>(idListKey) ?? new List<string>();
 
-            var obsoleteIds = new List<string>();
+            var broken = new List<string>();
             foreach (var i in ids) {
-                var item = storage.Get<T>(i);
+                var item = deserialize == null ? storage.Get<T>(i) : deserialize(storage.Get(i));
                 if (item == null) {
-                    obsoleteIds.Add(i);
+                    broken.Add(i);
                     continue;
                 }
                 items.Add(item);
             }
 
-            if (obsoleteIds.Count > 0) {
-                foreach (var id in obsoleteIds) {
+            if (broken.Count > 0) {
+                foreach (var id in broken) {
                     storage.Delete(id);
                     ids.Remove(id);
                     storage.Put(idListKey, ids);
                 }
             }
+
+            CustomSerializer = serialize;
         }
+
+        Func<T, string> CustomSerializer = null;
 
         public event Action<T> Added = delegate {};
         public event Action<T> Removed = delegate {};
@@ -55,7 +59,7 @@ namespace PerpetualEngine.Storage
                 throw new ApplicationException("The id must not be \"" + idListKey + "\".");
             if (ids.Contains(id))
                 throw new ApplicationException("Object with id \"" + id + "\" already exists.");
-            storage.Put(id, value);
+            Save(id, value);
             ids.Add(id);
             storage.Put(idListKey, ids);
             items.Add(value);
@@ -78,8 +82,16 @@ namespace PerpetualEngine.Storage
             if (!ids.Contains(id))
                 throw new ApplicationException("Object with id \"" + id + "\" does not exist.");
             var item = items[ids.IndexOf(id)];
-            storage.Put(id, item);
+            Save(id, item);
             Updated(item);
+        }
+
+        void Save(string id, T value)
+        {
+            if (CustomSerializer == null)
+                storage.Put(id, value);
+            else
+                storage.Put(id, CustomSerializer(value));
         }
 
         public virtual void Remove(string id)

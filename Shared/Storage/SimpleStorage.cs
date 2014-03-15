@@ -176,7 +176,7 @@ namespace PerpetualEngine.Storage
             return result;
         }
         // taken from http://stackoverflow.com/questions/2861722/binary-serialization-and-deserialization-without-creating-files-via-strings
-        static string SerializeObject<T>(T o)
+        internal static string SerializeObject<T>(T o)
         {
             using (MemoryStream stream = new MemoryStream()) {
                 new BinaryFormatter().Serialize(stream, o);
@@ -184,7 +184,7 @@ namespace PerpetualEngine.Storage
             }
         }
         // taken from http://stackoverflow.com/questions/2861722/binary-serialization-and-deserialization-without-creating-files-via-strings
-        T DeserializeObject<T>(string str)
+        internal static T DeserializeObject<T>(string str)
         {
             byte[] bytes = Convert.FromBase64String(str);
 

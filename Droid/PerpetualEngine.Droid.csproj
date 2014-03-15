@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\ExternalDlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -61,6 +64,9 @@
     </Compile>
     <Compile Include="..\Shared\Storage\IIdentifiable.cs">
       <Link>Shared\Storage\IIdentifiable.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Storage\JsonPersistingList.cs">
+      <Link>Shared\Storage\JsonPersistingList.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
