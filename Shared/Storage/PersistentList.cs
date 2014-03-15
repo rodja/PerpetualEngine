@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PerpetualEngine.Storage
 {
-    public class PersistentList<T> : IEnumerable, IEnumerable<T>
+    public class PersistentList<T> : IEnumerable, IEnumerable<T>, IEventExceutor
     {
         SimpleStorage storage;
         const string idListKey = "ids";
@@ -44,6 +44,16 @@ namespace PerpetualEngine.Storage
         public event Action<T> Added = delegate {};
         public event Action<T> Removed = delegate {};
         public event Action<T> Updated = delegate {};
+
+        public void ClearEventDelegates()
+        {
+            Added = delegate {
+            };
+            Removed = delegate {
+            };
+            Updated = delegate {
+            };
+        }
 
         public int Count { get { return items.Count; } }
 

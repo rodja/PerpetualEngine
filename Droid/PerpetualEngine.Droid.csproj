@@ -68,6 +68,9 @@
     <Compile Include="..\Shared\Storage\JsonPersistingList.cs">
       <Link>Shared\Storage\JsonPersistingList.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\IEventExecutor.cs">
+      <Link>Shared\IEventExecutor.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
