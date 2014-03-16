@@ -71,6 +71,7 @@
     <Compile Include="..\Shared\IEventExecutor.cs">
       <Link>Shared\IEventExecutor.cs</Link>
     </Compile>
+    <Compile Include="HelpfulExtensions.Droid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
