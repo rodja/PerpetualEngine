@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Desktop</RootNamespace>
-    <AssemblyName>Desktop</AssemblyName>
+    <RootNamespace>PerpetualEngine</RootNamespace>
+    <AssemblyName>PerpetualEngine.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,51 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\DesktopSimpleStorage.cs" />
-    <Compile Include="..\Shared\SimpleTimer.cs">
-      <Link>Shared\SimpleTimer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\SimpleStorage.cs">
-      <Link>Shared\Storage\SimpleStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\Tests.cs">
-      <Link>Shared\Storage\SimpleStorageTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\HelpfulExtensions.cs">
-      <Link>Shared\HelpfulExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\PersistentList.cs">
-      <Link>Shared\Storage\PersistentList.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\PersistenListTests.cs">
-      <Link>Shared\Storage\PersistenListTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\IIdentifiable.cs">
-      <Link>Shared\Storage\IIdentifiable.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\JsonPersistingList.cs">
-      <Link>Shared\Storage\JsonPersistingList.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\IEventExecutor.cs">
-      <Link>Shared\IEventExecutor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\JsonPersistingListTests.cs">
-      <Link>Shared\Storage\JsonPersistingListTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Flag.cs">
-      <Link>Shared\Flag.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\FileCache.cs">
-      <Link>Shared\Storage\FileCache.cs</Link>
-    </Compile>
+    <Compile Include="Storage\FileCache.cs" />
+    <Compile Include="Storage\IIdentifiable.cs" />
+    <Compile Include="Storage\JsonPersistingList.cs" />
+    <Compile Include="Storage\JsonPersistingListTests.cs" />
+    <Compile Include="Storage\PersistenListTests.cs" />
+    <Compile Include="Storage\PersistentList.cs" />
+    <Compile Include="Storage\SimpleStorage.cs" />
+    <Compile Include="Storage\Tests.cs" />
+    <Compile Include="Flag.cs" />
+    <Compile Include="HelpfulExtensions.cs" />
+    <Compile Include="IEventExecutor.cs" />
+    <Compile Include="SimpleTimer.cs" />
+    <Compile Include="Mocks\DesktopSimpleStorage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Storage\" />
-    <Folder Include="Shared\" />
-    <Folder Include="Shared\Storage\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Mocks\" />
   </ItemGroup>
 </Project>
