@@ -10,6 +10,7 @@ namespace PerpetualEngine
         public void TestInstantiation()
         {
             var timer = SimpleTimer.Create();
+
         }
     }
 }

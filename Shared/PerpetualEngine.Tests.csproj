@@ -60,6 +60,7 @@
     <Compile Include="SimpleTimer.cs" />
     <Compile Include="Mocks\MockedSimpleStorage.cs" />
     <Compile Include="SimpleTimerTests.cs" />
+    <Compile Include="Mocks\MockedSimpleTimer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
