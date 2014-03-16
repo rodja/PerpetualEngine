@@ -45,6 +45,8 @@ namespace PerpetualEngine.Storage
         public event Action<int, T> Removed = delegate {};
         public event Action<T> Updated = delegate {};
 
+        Dictionary<string, Action> onUpdatedSubscriptions = new Dictionary<string, Action>();
+
         public void ClearEventDelegates()
         {
             Added = delegate {
@@ -53,6 +55,25 @@ namespace PerpetualEngine.Storage
             };
             Updated = delegate {
             };
+
+            foreach (var id in onUpdatedSubscriptions.Keys) {
+                onUpdatedSubscriptions[id] = null;
+            }
+            onUpdatedSubscriptions.Clear();
+        }
+
+        public void Subscribe(string id, Action onUpdated)
+        {
+            if (!onUpdatedSubscriptions.ContainsKey(id))
+                onUpdatedSubscriptions.Add(id, delegate {
+                });
+            onUpdatedSubscriptions[id] += onUpdated;
+        }
+
+        public void Unsubscribe(string id, Action onUpdated)
+        {
+            if (onUpdatedSubscriptions.ContainsKey(id))
+                onUpdatedSubscriptions[id] -= onUpdated;
         }
 
         public int Count { get { return items.Count; } }
@@ -91,9 +112,11 @@ namespace PerpetualEngine.Storage
         {
             if (!ids.Contains(id))
                 throw new ApplicationException("Object with id \"" + id + "\" does not exist.");
-            var item = items[ids.IndexOf(id)];
+            var item = ElementWith(id);
             Save(id, item);
             Updated(item);
+            if (onUpdatedSubscriptions.ContainsKey(id))
+                onUpdatedSubscriptions[id]();
         }
 
         void Save(string id, T value)
@@ -128,6 +151,17 @@ namespace PerpetualEngine.Storage
         public int IndexOf(T item)
         {
             return items.IndexOf(item);
+        }
+
+        public T ElementAt(int index)
+        {
+            return items.ElementAt(index);
+        }
+
+        public T ElementWith(string id)
+        {
+            var index = ids.IndexOf(id);
+            return items.ElementAt(index);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
