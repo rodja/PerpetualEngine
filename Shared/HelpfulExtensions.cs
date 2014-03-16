@@ -45,6 +45,38 @@ namespace PerpetualEngine
             return trimmed.Substring(0, length - 3) + "...";
         }
 
+        static public string DigitToWord(this string digit)
+        {
+            switch (digit) {
+                case "1":
+                    return "eins";
+                case "2":
+                    return "zwei";
+                case "3":
+                    return "drei";
+                case "4":
+                    return "vier";
+                case "5":
+                    return "fünf";
+                case "6":
+                    return "sechs";
+                case "7":
+                    return "sieben";
+                case "8":
+                    return "acht";
+                case "9":
+                    return "neun";
+                case "10":
+                    return "zehn";
+                case "11":
+                    return "elf";
+                case "12":
+                    return "zwölf";
+                default:
+                    return digit;
+            }
+        }
+
         static public T ToEnum<T>(this string enumAsString)
         {
             return (T)Enum.Parse(typeof(T), enumAsString);

@@ -72,6 +72,9 @@
     <Compile Include="..\Shared\IEventExecutor.cs">
       <Link>Shared\IEventExecutor.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Storage\JsonPersistingListTests.cs">
+      <Link>Shared\Storage\JsonPersistingListTests.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

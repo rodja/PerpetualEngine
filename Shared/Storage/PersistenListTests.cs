@@ -18,12 +18,12 @@ namespace PerpetualEngine.Storage
             editGroup = Guid.NewGuid().ToString();
         }
 
-        PersistentList<A> BuildTestList()
+        PersistentList<IdentifiableForTesting> BuildTestList()
         {
-            var list = new PersistentList<A>(editGroup);
-            list.Add(new A("1"));
-            list.Add(new A("2"));
-            list.Add(new A("3"));
+            var list = new PersistentList<IdentifiableForTesting>(editGroup);
+            list.Add(new IdentifiableForTesting("1"));
+            list.Add(new IdentifiableForTesting("2"));
+            list.Add(new IdentifiableForTesting("3"));
             return list;
         }
 
@@ -31,7 +31,7 @@ namespace PerpetualEngine.Storage
         public void TestLoadingOfObjectsFromPersitence()
         {
             var list = BuildTestList();
-            list = new PersistentList<A>(editGroup);
+            list = new PersistentList<IdentifiableForTesting>(editGroup);
             var i = 1;
             foreach (var a in list)
                 Assert.AreEqual(a.Id, i++.ToString());
@@ -55,7 +55,7 @@ namespace PerpetualEngine.Storage
             var list = BuildTestList();
             var storage = SimpleStorage.EditGroup(editGroup);
             storage.Put("2", "break data with id 2");
-            list = new PersistentList<A>(editGroup);
+            list = new PersistentList<IdentifiableForTesting>(editGroup);
 
             int count = 0;
             foreach (var a in list)
@@ -75,49 +75,16 @@ namespace PerpetualEngine.Storage
             var list = BuildTestList();
             Assert.IsTrue(object.ReferenceEquals(list[1], list[1]));
         }
+    }
 
-        [Test()]
-        public void TestUsingJsonPersistingList()
+    [Serializable]
+    class IdentifiableForTesting : IIdentifiable
+    {
+        public string Id { get; set; }
+
+        public IdentifiableForTesting(string id)
         {
-            var list = new JsonPersistingList<A>(editGroup);
-            list.Add(new A("test"));
-            Assert.AreEqual("{\"Id\":\"test\"}", SimpleStorage.EditGroup(editGroup).Get("test"));
-
-            list = new JsonPersistingList<A>(editGroup);
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual("test", list.First().Id);
-        }
-
-        [Serializable]
-        class A : IIdentifiable
-        {
-            public string Id { get; set; }
-
-            public A(string id)
-            {
-                Id = id;
-            }
-        }
-
-        [Serializable]
-        class SomethingWhichShouldBeStoredAsJson : IIdentifiable, ISerializable
-        {
-            public string Id { get; set; }
-
-            public SomethingWhichShouldBeStoredAsJson(string id)
-            {
-                Id = id;
-            }
-
-            public SomethingWhichShouldBeStoredAsJson(SerializationInfo info, StreamingContext context)
-            {
-                Id = JsonConvert.DeserializeObject<SomethingWhichShouldBeStoredAsJson>(info.GetString("json")).Id;
-            }
-
-            public void GetObjectData(SerializationInfo info, StreamingContext context)
-            {
-                info.AddValue("json", JsonConvert.SerializeObject(this));
-            }
+            Id = id;
         }
     }
 }

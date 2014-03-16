@@ -42,7 +42,7 @@ namespace PerpetualEngine.Storage
         Func<T, string> CustomSerializer = null;
 
         public event Action<T> Added = delegate {};
-        public event Action<T> Removed = delegate {};
+        public event Action<int, T> Removed = delegate {};
         public event Action<T> Updated = delegate {};
 
         public void ClearEventDelegates()
@@ -107,11 +107,12 @@ namespace PerpetualEngine.Storage
         public virtual void Remove(string id)
         {
             storage.Delete(id);
-            var item = items[ids.IndexOf(id)];
+            var index = ids.IndexOf(id);
+            var item = items[index];
             items.Remove(item);
             ids.Remove(id);
             storage.Put(idListKey, ids);
-            Removed(item);
+            Removed(index, item);
         }
 
         public virtual void Clear()
@@ -122,6 +123,11 @@ namespace PerpetualEngine.Storage
             storage.Delete(idListKey);
             ids.Clear();
             items.Clear();
+        }
+
+        public int IndexOf(T item)
+        {
+            return items.IndexOf(item);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
