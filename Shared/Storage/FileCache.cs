@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace PerpetualEngine
+namespace PerpetualEngine.Storage
 {
     public class FileCache
     {
