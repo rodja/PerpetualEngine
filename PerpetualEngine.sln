@@ -27,7 +27,7 @@ Global
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\PerpetualEngine.iOS.csproj
+		StartupItem = Shared\PerpetualEngine.Tests.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

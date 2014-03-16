@@ -4,31 +4,31 @@ using System.Collections.Generic;
 namespace PerpetualEngine.Storage
 {
     /// <summary>
-    /// Deskotp specific implementation to let EditGroup(string) return an DesktopSimpleStorage object
+    /// Special unit testing implementation to let EditGroup(string) return an MockedSimpleStorage object
     /// </summary>
     public partial class SimpleStorage
     {
         static SimpleStorage()
         {
             SimpleStorage.EditGroup = (name) => {
-                return new DesktopSimpleStorage(name);
+                return new MockedSimpleStorage(name);
             };
         }
 
         public void Clear()
         {
-            DesktopSimpleStorage.database.Clear();
+            MockedSimpleStorage.database.Clear();
         }
     }
 
     /// <summary>
     /// Does not persistent right now... only used for unit tests
     /// </summary>
-    public class DesktopSimpleStorage : SimpleStorage
+    public class MockedSimpleStorage : SimpleStorage
     {
         public static Dictionary<string,string> database = new Dictionary<string,string>();
 
-        public DesktopSimpleStorage(string groupName) : base(groupName)
+        public MockedSimpleStorage(string groupName) : base(groupName)
         {
         }
 

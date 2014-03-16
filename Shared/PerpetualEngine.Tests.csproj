@@ -58,7 +58,8 @@
     <Compile Include="HelpfulExtensions.cs" />
     <Compile Include="IEventExecutor.cs" />
     <Compile Include="SimpleTimer.cs" />
-    <Compile Include="Mocks\DesktopSimpleStorage.cs" />
+    <Compile Include="Mocks\MockedSimpleStorage.cs" />
+    <Compile Include="SimpleTimerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
