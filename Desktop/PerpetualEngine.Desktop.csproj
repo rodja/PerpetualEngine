@@ -75,6 +75,12 @@
     <Compile Include="..\Shared\Storage\JsonPersistingListTests.cs">
       <Link>Shared\Storage\JsonPersistingListTests.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\FileCache.cs">
+      <Link>Shared\FileCache.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Flag.cs">
+      <Link>Shared\Flag.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

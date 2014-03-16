@@ -72,6 +72,12 @@
       <Link>Shared\IEventExecutor.cs</Link>
     </Compile>
     <Compile Include="HelpfulExtensions.Droid.cs" />
+    <Compile Include="..\Shared\FileCache.cs">
+      <Link>Shared\FileCache.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Flag.cs">
+      <Link>Shared\Flag.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
