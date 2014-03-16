@@ -15,14 +15,25 @@ namespace PerpetualEngine
 
     class MockedSimpleTimer : SimpleTimer
     {
+        bool stop = false;
+
         public override void Repeat(TimeSpan timeSpan, Action action)
         {
-            throw new NotImplementedException();
+            RepeatAsync(timeSpan, action);
+        }
+
+        async void RepeatAsync(TimeSpan timeSpan, Action action)
+        {
+            stop = false;
+            while (!stop) {
+                await timeSpan;
+                action();
+            }
         }
 
         public override void Clear()
         {
-            throw new NotImplementedException();
+            stop = true;
         }
     }
 }
