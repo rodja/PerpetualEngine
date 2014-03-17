@@ -34,6 +34,7 @@ namespace PerpetualEngine
         public void PostFile(string url, string filePath)
         {
             RequestUpload(url, filePath);
+            // TODO unit test
         }
 
         public async void PostFileAsync(string url, string filePath)
@@ -41,6 +42,13 @@ namespace PerpetualEngine
             await Task.Run(() => {
                 RequestUpload(url, filePath);
             });
+            // TODO unit test
+        }
+
+        public void Delete(string url)
+        {
+            Request("DELETE", url);
+            // TODO unit test
         }
 
         private string Request(string method, string url)
@@ -88,7 +96,6 @@ namespace PerpetualEngine
                 using (var output = request.GetRequestStream())
                     StreamCopy(input, output); // TODO manual buffer necessary?
             }
-            // TODO unit test
         }
 
         private void StreamCopy(Stream input, Stream output)
@@ -98,7 +105,6 @@ namespace PerpetualEngine
             while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0) {
                 output.Write(buffer, 0, bytesRead);
             }
-            // TODO unit test
         }
     }
 }
