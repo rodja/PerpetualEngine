@@ -13,6 +13,7 @@ namespace PerpetualEngine
         const string imgUrl = "http://thebloodsugartrick.com/images/explenation.png";
         const string imgPath = "tmp.png";
         const string postUrl = "http://httpbin.org/post";
+        const string deleteUrl = "http://httpbin.org/delete";
 
         [SetUp]
         public void Setup()
@@ -54,7 +55,6 @@ namespace PerpetualEngine
         public void TestPostFile()
         {
             var response = server.Post(postUrl, imgPath);
-            Console.WriteLine(response);
             Assert.That(response, Is.StringContaining("\"Content-Length\": \"23725\""));
         }
 
@@ -62,8 +62,21 @@ namespace PerpetualEngine
         public async void TestPostFileAsync()
         {
             var response = await server.PostAsync(postUrl, imgPath);
-            Console.WriteLine(response);
             Assert.That(response, Is.StringContaining("\"Content-Length\": \"23725\""));
+        }
+
+        [Test()]
+        public void TestDelete()
+        {
+            var response = server.Delete(deleteUrl);
+            Assert.That(response, Is.StringContaining("\"data\": \"\""));
+        }
+
+        [Test()]
+        public async void TestDeleteAsync()
+        {
+            var response = await server.DeleteAsync(deleteUrl);
+            Assert.That(response, Is.StringContaining("\"data\": \"\""));
         }
     }
 }

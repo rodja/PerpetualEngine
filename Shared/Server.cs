@@ -27,7 +27,7 @@ namespace PerpetualEngine
         public async void GetAsync(string url, string filePath)
         {
             await Task.Run(() => {
-                RequestDownload(url, filePath);
+                Get(url, filePath);
             });
         }
 
@@ -39,14 +39,20 @@ namespace PerpetualEngine
         public async Task<string> PostAsync(string url, string filePath)
         {
             return await Task.Run(() => {
-                return RequestUpload(url, filePath);
+                return Post(url, filePath);
             });
         }
 
-        public void Delete(string url)
+        public string Delete(string url)
         {
-            Request("DELETE", url);
-            // TODO unit test
+            return Request("DELETE", url);
+        }
+
+        public async Task<string> DeleteAsync(string url)
+        {
+            return await Task.Run(() => {
+                return Delete(url);
+            });
         }
 
         private string Request(string method, string url)
