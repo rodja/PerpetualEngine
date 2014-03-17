@@ -63,6 +63,13 @@ namespace PerpetualEngine
         {
             RequestFile(url, filePath);
         }
+
+        public async void GetFileAsync(string url, string filePath)
+        {
+            await Task.Run(() => {
+                RequestFile(url, filePath);
+            });
+        }
         // TODO Get() and GetAsync() overloaded for downloading files
         // TODO Post() and PostAsync() for uploading files
     }

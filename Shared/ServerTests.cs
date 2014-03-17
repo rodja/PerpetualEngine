@@ -40,6 +40,14 @@ namespace PerpetualEngine
             var fileInfo = new FileInfo(imgPath);
             Assert.That(fileInfo.Length, Is.EqualTo(23725));
         }
+
+        [Test()]
+        public void TestGetFileAsync()
+        {
+            server.GetFileAsync(imgUrl, imgPath);
+            var fileInfo = new FileInfo(imgPath);
+            Assert.That(fileInfo.Length, Is.EqualTo(23725));
+        }
     }
 }
     
