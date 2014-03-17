@@ -12,6 +12,7 @@ namespace PerpetualEngine
         const string tinyUrl = "http://tinyurl.com/pcyutsv";
         const string imgUrl = "http://thebloodsugartrick.com/images/explenation.png";
         const string imgPath = "tmp.png";
+        const string postUrl = "http://posttestserver.com/post.php";
 
         [SetUp]
         public void Setup()
@@ -47,6 +48,22 @@ namespace PerpetualEngine
             server.GetFileAsync(imgUrl, imgPath);
             var fileInfo = new FileInfo(imgPath);
             Assert.That(fileInfo.Length, Is.EqualTo(23725));
+        }
+
+        [Test()]
+        public void TestPostFile()
+        {
+            var response = server.PostFile(imgUrl, imgPath);
+            Console.WriteLine(response);
+            // TODO check result
+        }
+
+        [Test()]
+        public void TestPostFileAsync()
+        {
+            var response = server.PostFileAsync(imgUrl, imgPath);
+            Console.WriteLine(response);
+            // TODO check result
         }
     }
 }

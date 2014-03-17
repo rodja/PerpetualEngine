@@ -31,18 +31,16 @@ namespace PerpetualEngine
             });
         }
 
-        public void PostFile(string url, string filePath)
+        public string PostFile(string url, string filePath)
         {
-            RequestUpload(url, filePath);
-            // TODO unit test
+            return RequestUpload(url, filePath);
         }
 
-        public async void PostFileAsync(string url, string filePath)
+        public async Task<string> PostFileAsync(string url, string filePath)
         {
-            await Task.Run(() => {
-                RequestUpload(url, filePath);
+            return await Task.Run(() => {
+                return RequestUpload(url, filePath);
             });
-            // TODO unit test
         }
 
         public void Delete(string url)
@@ -65,7 +63,7 @@ namespace PerpetualEngine
                         if (string.IsNullOrWhiteSpace(content)) {
                             Console.WriteLine("Response contained empty body...");
                         } else {
-                            Console.WriteLine("Response Body: \r\n {0}", content);
+                            Console.WriteLine("Response body: \r\n {0}", content);
                             return content;
                         }
                     }
@@ -86,7 +84,7 @@ namespace PerpetualEngine
             }
         }
 
-        private void RequestUpload(string url, string filePath)
+        private string RequestUpload(string url, string filePath)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // TODO casting?
             request.Method = "POST";
@@ -96,6 +94,20 @@ namespace PerpetualEngine
                 using (var output = request.GetRequestStream())
                     StreamCopy(input, output); // TODO manual buffer necessary?
             }
+            using (var response = request.GetResponse() as HttpWebResponse) {
+                if (response.StatusCode != HttpStatusCode.OK)
+                    Console.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+                using (var reader = new StreamReader(response.GetResponseStream())) {
+                    var content = reader.ReadToEnd();
+                    if (string.IsNullOrWhiteSpace(content)) {
+                        Console.WriteLine("Response contained empty body...");
+                    } else {
+                        Console.WriteLine("Response body: \r\n {0}", content);
+                        return content;
+                    }
+                }
+            } // TODO how to get server response to console?
+            return null;
         }
 
         private void StreamCopy(Stream input, Stream output)
