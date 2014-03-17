@@ -7,6 +7,42 @@ namespace PerpetualEngine
 {
     public class Server
     {
+        public string Get(string url)
+        {
+            return Request("GET", url);
+        }
+
+        public async Task<string> GetAsync(string url)
+        {
+            return await Task.Run(() => {
+                return Get(url);
+            });
+        }
+
+        public void GetFile(string url, string filePath)
+        {
+            RequestDownload(url, filePath);
+        }
+
+        public async void GetFileAsync(string url, string filePath)
+        {
+            await Task.Run(() => {
+                RequestDownload(url, filePath);
+            });
+        }
+
+        public void PostFile(string url, string filePath)
+        {
+            RequestUpload(url, filePath);
+        }
+
+        public async void PostFileAsync(string url, string filePath)
+        {
+            await Task.Run(() => {
+                RequestUpload(url, filePath);
+            });
+        }
+
         private string Request(string method, string url)
         {
             var request = HttpWebRequest.Create(url);
@@ -32,46 +68,38 @@ namespace PerpetualEngine
             return null;
         }
 
-        private void RequestFile(string url, string filePath)
+        private void RequestDownload(string url, string filePath)
         {
             var request = HttpWebRequest.Create(url);
             var response = request.GetResponse();
             using (var input = response.GetResponseStream()) {
-                using (var output = new FileStream(filePath, FileMode.Create)) {
-                    int bytesRead;
-                    byte[] buffer = new byte[32768];
-                    while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0) {
-                        output.Write(buffer, 0, bytesRead);
-                    }
-                }
+                using (var output = new FileStream(filePath, FileMode.Create))
+                    StreamCopy(input, output);
             }
         }
 
-        public string Get(string url)
+        private void RequestUpload(string url, string filePath)
         {
-            return Request("GET", url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // TODO casting?
+            request.Method = "POST";
+            request.AllowWriteStreamBuffering = true; // TODO isn't it true by default?
+            using (var input = new FileStream(filePath, FileMode.Open)) {
+                request.ContentLength = input.Length; // TODO needs to be set?
+                using (var output = request.GetRequestStream())
+                    StreamCopy(input, output); // TODO manual buffer necessary?
+            }
+            // TODO unit test
         }
 
-        public async Task<string> GetAsync(string url)
+        private void StreamCopy(Stream input, Stream output)
         {
-            return await Task.Run(() => {
-                return Get(url);
-            });
+            int bytesRead;
+            byte[] buffer = new byte[32768];
+            while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0) {
+                output.Write(buffer, 0, bytesRead);
+            }
+            // TODO unit test
         }
-
-        public void GetFile(string url, string filePath)
-        {
-            RequestFile(url, filePath);
-        }
-
-        public async void GetFileAsync(string url, string filePath)
-        {
-            await Task.Run(() => {
-                RequestFile(url, filePath);
-            });
-        }
-        // TODO Get() and GetAsync() overloaded for downloading files
-        // TODO Post() and PostAsync() for uploading files
     }
 }
 
