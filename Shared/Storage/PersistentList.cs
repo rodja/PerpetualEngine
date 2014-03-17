@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PerpetualEngine.Storage
 {
-    public class PersistentList<T> : IEnumerable, IEnumerable<T>, IEventExceutor
+    public class PersistentList<T> : IEnumerable, IEnumerable<T>, IEventExceutor  where T : IIdentifiable
     {
         SimpleStorage storage;
         const string idListKey = "ids";
@@ -86,6 +86,12 @@ namespace PerpetualEngine.Storage
 
         public virtual void Add(string id, T value)
         {
+
+        }
+
+        public virtual void Add(T value)
+        {
+            var id = value.Id;
             if (id == idListKey)
                 throw new ApplicationException("The id must not be \"" + idListKey + "\".");
             if (ids.Contains(id))
@@ -96,13 +102,6 @@ namespace PerpetualEngine.Storage
             items.Add(value);
 
             Added(value);
-        }
-
-        public virtual void Add(T value)
-        {
-            if (!(value is IIdentifiable))
-                throw new NotSupportedException("Value must implement IIdentifiable");
-            Add((value as IIdentifiable).Id, value);
         }
 
         /// <summary>
@@ -162,16 +161,6 @@ namespace PerpetualEngine.Storage
         {
             var index = ids.IndexOf(id);
             return items.ElementAt(index);
-        }
-
-        public bool Contains(string id)
-        {
-            return ids.Contains(id);
-        }
-
-        public bool Contains(T item)
-        {
-            return items.Contains(item);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

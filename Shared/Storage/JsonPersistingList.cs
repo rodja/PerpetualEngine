@@ -3,7 +3,7 @@ using System;
 
 namespace PerpetualEngine.Storage
 {
-    public class JsonPersistingList<T> : PersistentList<T>
+    public class JsonPersistingList<T> : PersistentList<T> where T : IIdentifiable
     {
         public JsonPersistingList(string editGroup) : base(
             editGroup, 
