@@ -163,6 +163,16 @@ namespace PerpetualEngine.Storage
             return items.ElementAt(index);
         }
 
+        public bool Contains(string id)
+        {
+            return ids.Contains(id);
+        }
+
+        public bool Contains(T item)
+        {
+            return items.Contains(item);
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return items.GetEnumerator();
