@@ -6,13 +6,28 @@ namespace PerpetualEngine
     [TestFixture()]
     public class ServerTests
     {
-        [Test()]
-        public void TestDownloadString()
+        private Server server;
+        const string url = "http://tinyurl.com/api-create.php?url=http://www.perpetual-mobile.de/";
+        const string tinyUrl = "http://tinyurl.com/pcyutsv";
+
+        [SetUp]
+        public void Setup()
         {
-            var server = new Server();
-            var url = "http://tinyurl.com/api-create.php?url=http://www.perpetual-mobile.de/";
-            var response = server.DownloadString(url);
-            Assert.That(response, Is.EqualTo("http://tinyurl.com/pcyutsv"));
+            server = new Server();
+        }
+
+        [Test()]
+        public void TestGet()
+        {
+            var response = server.Get(url);
+            Assert.That(response, Is.EqualTo(tinyUrl));
+        }
+
+        [Test()]
+        public async void TestGetAsync()
+        {
+            var response = await server.GetAsync(url);
+            Assert.That(response, Is.EqualTo(tinyUrl));
         }
     }
 }

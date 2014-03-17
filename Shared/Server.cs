@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace PerpetualEngine
 {
@@ -32,9 +33,16 @@ namespace PerpetualEngine
             return null;
         }
 
-        public string DownloadString(string path)
+        public string Get(string path)
         {
             return Request("GET", path);
+        }
+
+        public async Task<string> GetAsync(string path)
+        {
+            return await Task.Run(() => {
+                return Get(path);
+            });
         }
     }
 }
