@@ -47,7 +47,6 @@
     <Compile Include="Storage\PersistenListTests.cs" />
     <Compile Include="Storage\PersistentList.cs" />
     <Compile Include="Storage\SimpleStorage.cs" />
-    <Compile Include="Storage\Tests.cs" />
     <Compile Include="Flag.cs" />
     <Compile Include="HelpfulExtensions.cs" />
     <Compile Include="IEventExecutor.cs" />
@@ -55,6 +54,7 @@
     <Compile Include="Mocks\MockedSimpleStorage.cs" />
     <Compile Include="SimpleTimerTests.cs" />
     <Compile Include="Mocks\MockedSimpleTimer.cs" />
+    <Compile Include="Storage\SimpleStorageTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
