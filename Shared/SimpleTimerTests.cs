@@ -11,11 +11,11 @@ namespace PerpetualEngine
         {
             var timer = SimpleTimer.Create();
             var count = 0;
-            timer.Repeat(TimeSpan.FromMilliseconds(100), delegate {
+            timer.Repeat(TimeSpan.FromMilliseconds(1000), delegate {
                 count++;
             });
             Assert.That(count, Is.EqualTo(0));
-            Assert.That(() => count, Is.EqualTo(2).After(220));
+            Assert.That(() => count, Is.EqualTo(2).After(2200));
         }
     }
 }
