@@ -12,7 +12,7 @@ namespace PerpetualEngine
         const string tinyUrl = "http://tinyurl.com/pcyutsv";
         const string imgUrl = "http://thebloodsugartrick.com/images/explenation.png";
         const string imgPath = "tmp.png";
-        const string postUrl = "http://posttestserver.com/post.php";
+        const string postUrl = "http://httpbin.org/post";
 
         [SetUp]
         public void Setup()
@@ -37,7 +37,7 @@ namespace PerpetualEngine
         [Test()]
         public void TestGetFile()
         {
-            server.GetFile(imgUrl, imgPath);
+            server.Get(imgUrl, imgPath);
             var fileInfo = new FileInfo(imgPath);
             Assert.That(fileInfo.Length, Is.EqualTo(23725));
         }
@@ -45,7 +45,7 @@ namespace PerpetualEngine
         [Test()]
         public void TestGetFileAsync()
         {
-            server.GetFileAsync(imgUrl, imgPath);
+            server.GetAsync(imgUrl, imgPath);
             var fileInfo = new FileInfo(imgPath);
             Assert.That(fileInfo.Length, Is.EqualTo(23725));
         }
@@ -53,17 +53,17 @@ namespace PerpetualEngine
         [Test()]
         public void TestPostFile()
         {
-            var response = server.PostFile(imgUrl, imgPath);
+            var response = server.Post(postUrl, imgPath);
             Console.WriteLine(response);
-            // TODO check result
+            Assert.That(response, Is.StringContaining("\"Content-Length\": \"23725\""));
         }
 
         [Test()]
-        public void TestPostFileAsync()
+        public async void TestPostFileAsync()
         {
-            var response = server.PostFileAsync(imgUrl, imgPath);
+            var response = await server.PostAsync(postUrl, imgPath);
             Console.WriteLine(response);
-            // TODO check result
+            Assert.That(response, Is.StringContaining("\"Content-Length\": \"23725\""));
         }
     }
 }
