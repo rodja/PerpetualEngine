@@ -94,6 +94,7 @@ namespace PerpetualEngine
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // TODO casting?
             request.Method = "POST";
+            request.AllowAutoRedirect = true;
             request.AllowWriteStreamBuffering = true; // TODO isn't it true by default?
             using (var input = new FileStream(filePath, FileMode.Open)) {
                 request.ContentLength = input.Length; // TODO needs to be set?

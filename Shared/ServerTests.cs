@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace PerpetualEngine
 {
@@ -55,7 +57,12 @@ namespace PerpetualEngine
         public void TestPostFile()
         {
             var response = server.Post(postUrl, imgPath);
-            Assert.That(response, Is.StringContaining("\"Content-Length\": \"23725\""));
+            Console.WriteLine(response);
+            dynamic json = JObject.Parse(response);
+
+            Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
+            Assert.That("multipart/form-data; boundary=", Is.StringStarting(json["headers"]["Content-Type"]));
+            Assert.That(7, Is.EqualTo(json["headers"].Count));
         }
 
         [Test()]
