@@ -32,12 +32,12 @@ namespace PerpetualEngine
                 Get(url, filePath);
             });
         }
-        //
-        //        public string Post(string url, string filePath)
-        //        {
-        //            return RequestUpload(url, filePath);
-        //        }
-        //
+
+        public string Post(string url, string filePath)
+        {
+            return RequestUpload(url, filePath);
+        }
+
         public async Task<string> PostAsync(string url, string filePath)
         {
             return await Task.Run(() => {
@@ -91,34 +91,47 @@ namespace PerpetualEngine
                     StreamCopy(input, output);
             }
         }
-        //
-        //        private string RequestUpload(string url, string filePath)
-        //        {
-        //            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // TODO casting?
-        //            request.Method = "POST";
-        //            request.AllowAutoRedirect = true;
-        //            request.AllowWriteStreamBuffering = true; // TODO isn't it true by default?
-        //            using (var input = new FileStream(filePath, FileMode.Open)) {
-        //                request.ContentLength = input.Length; // TODO needs to be set?
-        //                using (var output = request.GetRequestStream())
-        //                    StreamCopy(input, output); // TODO manual buffer necessary?
-        //            }
-        //            using (var response = request.GetResponse() as HttpWebResponse) {
-        //                if (response.StatusCode != HttpStatusCode.OK)
-        //                    Console.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
-        //                using (var reader = new StreamReader(response.GetResponseStream())) {
-        //                    var content = reader.ReadToEnd();
-        //                    if (string.IsNullOrWhiteSpace(content)) {
-        //                        Console.WriteLine("Response contained empty body...");
-        //                    } else {
-        //                        Console.WriteLine("Response body: \r\n {0}", content);
-        //                        return content;
-        //                    }
-        //                }
-        //            } // TODO how to get server response to console?
-        //            return null;
-        //        }
-        //
+
+        private string RequestUpload(string url, string filePath)
+        {
+            string boundary = "----------" + DateTime.Now.Ticks.ToString("x");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // TODO casting?
+            request.Method = "POST";
+            request.ContentType = "multipart/form-data; boundary=" + boundary;
+            request.AllowAutoRedirect = true;
+            request.AllowWriteStreamBuffering = true; // TODO isn't it true by default?
+
+            byte[] fileData = null;
+            using (var stream = new FileStream(filePath, FileMode.Open)) {
+                fileData = new byte[stream.Length];
+                stream.Read(fileData, 0, (int)stream.Length);
+            }
+
+            var Params = new Dictionary<string, string> { { "userid", "9" } };
+
+            using (var input = new FileStream(filePath, FileMode.Open)) {
+//                request.ContentLength = input.Length; // TODO needs to be set?
+                using (var output = request.GetRequestStream()) {
+                    //StreamCopy(input, output); // TODO manual buffer necessary?
+                    WriteMultipartForm(output, boundary, Params, filePath, "application/octet-stream", fileData);
+                }
+            }
+            using (var response = request.GetResponse() as HttpWebResponse) {
+                if (response.StatusCode != HttpStatusCode.OK)
+                    Console.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+                using (var reader = new StreamReader(response.GetResponseStream())) {
+                    var content = reader.ReadToEnd();
+                    if (string.IsNullOrWhiteSpace(content)) {
+                        Console.WriteLine("Response contained empty body...");
+                    } else {
+                        Console.WriteLine("Response body: \r\n {0}", content);
+                        return content;
+                    }
+                }
+            }
+            return null;
+        }
+
         private void StreamCopy(Stream input, Stream output)
         {
             int bytesRead;
@@ -131,52 +144,52 @@ namespace PerpetualEngine
         /// <summary>
         /// Occurs when upload backup application bar button is clicked. Author : Farhan Ghumra
         /// </summary>
-        public string Post(string url, string filePath)
-        {
-            byte[] fileBytes = null;
-            using (var stream = new FileStream(filePath, FileMode.Open)) {
-                fileBytes = new byte[stream.Length];
-                stream.Read(fileBytes, 0, (int)stream.Length);
-            }
-            var Params = new Dictionary<string, string> { { "userid", "9" } };
-            UploadFilesToServer(new Uri(url), Params, filePath, "application/octet-stream", fileBytes);
-
-            return null;
-        }
+        //        public string Post(string url, string filePath)
+        //        {
+        //            byte[] fileBytes = null;
+        //            using (var stream = new FileStream(filePath, FileMode.Open)) {
+        //                fileBytes = new byte[stream.Length];
+        //                stream.Read(fileBytes, 0, (int)stream.Length);
+        //            }
+        //            var Params = new Dictionary<string, string> { { "userid", "9" } };
+        //            UploadFilesToServer(new Uri(url), Params, filePath, "application/octet-stream", fileBytes);
+        //
+        //            return null;
+        //        }
 
         /// <summary>
         /// Creates HTTP POST request & uploads database to server. Author : Farhan Ghumra
         /// </summary>
-        private void UploadFilesToServer(Uri uri, Dictionary<string, string> data, string fileName, string fileContentType, byte[] fileData)
-        {
-            string boundary = "----------" + DateTime.Now.Ticks.ToString("x");
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-            httpWebRequest.ContentType = "multipart/form-data; boundary=" + boundary;
-            httpWebRequest.Method = "POST";
-            httpWebRequest.BeginGetRequestStream((result) => {
-                try {
-                    HttpWebRequest request = (HttpWebRequest)result.AsyncState;
-                    using (Stream requestStream = request.EndGetRequestStream(result)) {
-                        WriteMultipartForm(requestStream, boundary, data, fileName, fileContentType, fileData);
-                    }
-                    request.BeginGetResponse(a => {
-                        try {
-                            // TODO never reaching this line
-                            var response = request.EndGetResponse(a);
-                            var responseStream = response.GetResponseStream();
-                            using (var sr = new StreamReader(responseStream)) {
-                                using (StreamReader streamReader = new StreamReader(response.GetResponseStream())) {
-                                    string responseString = streamReader.ReadToEnd();
-                                    Console.WriteLine(responseString);
-                                }
-                            }
-                        } catch (Exception) {
-                        }
-                    }, null);
-                } catch (Exception) {
-                }
-            }, httpWebRequest);
-        }
+        //        private void UploadFilesToServer(Uri uri, Dictionary<string, string> data, string fileName, string fileContentType, byte[] fileData)
+        //        {
+        //            string boundary = "----------" + DateTime.Now.Ticks.ToString("x");
+        //            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+        //            httpWebRequest.ContentType = "multipart/form-data; boundary=" + boundary;
+        //            httpWebRequest.Method = "POST";
+        //            try {
+        //                var request = httpWebRequest.GetRequestStream();
+        //
+        //
+        //                using (Stream requestStream = request.EndGetRequestStream(result)) {
+        //                    WriteMultipartForm(requestStream, boundary, data, fileName, fileContentType, fileData);
+        //                }
+        //                request.BeginGetResponse(a => {
+        //                    try {
+        //                        // TODO never reaching this line
+        //                        var response = request.EndGetResponse(a);
+        //                        var responseStream = response.GetResponseStream();
+        //                        using (var sr = new StreamReader(responseStream)) {
+        //                            using (StreamReader streamReader = new StreamReader(response.GetResponseStream())) {
+        //                                string responseString = streamReader.ReadToEnd();
+        //                                Console.WriteLine(responseString);
+        //                            }
+        //                        }
+        //                    } catch (Exception) {
+        //                    }
+        //                }, null);
+        //            } catch (Exception) {
+        //            }
+        //        }
 
         /// <summary>
         /// Writes multi part HTTP POST request. Author : Farhan Ghumra

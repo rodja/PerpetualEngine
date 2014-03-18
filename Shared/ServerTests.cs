@@ -58,12 +58,12 @@ namespace PerpetualEngine
         public void TestPostFile()
         {
             var response = server.Post(postUrl, imgPath);
+            // Assert.That(() => response, Is.Not.Null.After(10 * 60 * 1000));
             Console.WriteLine(response);
-//            dynamic json = JObject.Parse(response);
 
-//            Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
-//            Assert.That("multipart/form-data; boundary=", Is.StringStarting(json["headers"]["Content-Type"]));
-//            Assert.That(7, Is.EqualTo(json["headers"].Count));
+            dynamic json = JObject.Parse(response);
+            Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
+            Assert.That(json["headers"]["Content-Type"], Is.StringStarting("multipart/form-data; boundary="));
         }
 
         [Test()]
