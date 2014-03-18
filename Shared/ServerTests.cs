@@ -59,9 +59,6 @@ namespace PerpetualEngine
         public void TestPostFile()
         {
             var response = server.Post(postUrl, imgPath);
-            // Assert.That(() => response, Is.Not.Null.After(10 * 60 * 1000));
-            Console.WriteLine(response);
-
             dynamic json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
@@ -72,7 +69,10 @@ namespace PerpetualEngine
         public async void TestPostFileAsync()
         {
             var response = await server.PostAsync(postUrl, imgPath);
-            Assert.That(response, Is.StringContaining("\"Content-Length\": \"23725\""));
+            dynamic json = JObject.Parse(response);
+            Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
+            Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
+            Assert.That(json["files"].Count, Is.EqualTo(1));
         }
 
         [Test()]
