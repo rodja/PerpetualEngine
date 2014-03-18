@@ -94,6 +94,7 @@ namespace PerpetualEngine
 
         private string RequestUpload(string url, string filePath)
         {
+            // TODO replace with http://www.briangrinstead.com/blog/multipart-form-post-in-c ...
             string boundary = "----------" + DateTime.Now.Ticks.ToString("x");
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // TODO casting?
             request.Method = "POST";
@@ -107,27 +108,29 @@ namespace PerpetualEngine
                 stream.Read(fileData, 0, (int)stream.Length);
             }
 
-            var Params = new Dictionary<string, string> { { "userid", "9" } };
+//            var Params = new Dictionary<string, string> { { "userid", "9" } };
 
             using (var input = new FileStream(filePath, FileMode.Open)) {
 //                request.ContentLength = input.Length; // TODO needs to be set?
                 using (var output = request.GetRequestStream()) {
                     //StreamCopy(input, output); // TODO manual buffer necessary?
-                    WriteMultipartForm(output, boundary, Params, filePath, "application/octet-stream", fileData);
+                    WriteMultipartForm(output, boundary, null, filePath, "application/octet-stream", fileData);
                 }
             }
+            // TODO ...basically up to here
             using (var response = request.GetResponse() as HttpWebResponse) {
                 if (response.StatusCode != HttpStatusCode.OK)
                     Console.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
-                using (var reader = new StreamReader(response.GetResponseStream())) {
-                    var content = reader.ReadToEnd();
-                    if (string.IsNullOrWhiteSpace(content)) {
-                        Console.WriteLine("Response contained empty body...");
-                    } else {
-                        Console.WriteLine("Response body: \r\n {0}", content);
-                        return content;
+                else
+                    using (var reader = new StreamReader(response.GetResponseStream())) {
+                        var content = reader.ReadToEnd();
+                        if (string.IsNullOrWhiteSpace(content)) {
+                            Console.WriteLine("Response contained empty body...");
+                        } else {
+                            Console.WriteLine("Response body: \r\n {0}", content);
+                            return content;
+                        }
                     }
-                }
             }
             return null;
         }
@@ -201,9 +204,9 @@ namespace PerpetualEngine
             /// the last boundary.
             byte[] trailer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "–-\r\n");
             /// the form data, properly formatted
-            string formdataTemplate = "Content-Dis-data; name=\"{0}\"\r\n\r\n{1}";
+            string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
             /// the form-data file upload, properly formatted
-            string fileheaderTemplate = "Content-Dis-data; name=\"{0}\"; filename=\"{1}\";\r\nContent-Type: {2}\r\n\r\n";
+            string fileheaderTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\";\r\nContent-Type: {2}\r\n\r\n";
 
             /// Added to track if we need a CRLF or not.
             bool bNeedsCRLF = false;
