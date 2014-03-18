@@ -14,9 +14,9 @@ namespace PerpetualEngine
         const string tinyUrl = "http://tinyurl.com/pcyutsv";
         const string imgUrl = "http://thebloodsugartrick.com/images/explenation.png";
         const string imgPath = "tmp.png";
-        //        const string postUrl = "http://httpbin.org/post";
+        const string postUrl = "http://httpbin.org/post";
         //        const string postUrl = "http://www.posttestserver.com/post.php";
-        const string postUrl = "http://sipt.perpetual-mobile.de/";
+        //        const string postUrl = "http://sipt.perpetual-mobile.de/";
         const string deleteUrl = "http://httpbin.org/delete";
 
         [SetUp]
@@ -66,7 +66,6 @@ namespace PerpetualEngine
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
             Assert.That(json["files"].Count, Is.EqualTo(1));
-            Assert.Fail();
         }
 
         [Test()]
