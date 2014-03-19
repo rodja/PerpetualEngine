@@ -103,6 +103,7 @@ namespace PerpetualEngine
         // http://www.briangrinstead.com/blog/multipart-form-post-in-c
         private string RequestUpload(string url, string filePath)
         {
+            Console.WriteLine("uploading to " + url);
             FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             byte[] data = new byte[fs.Length];
             fs.Read(data, 0, data.Length);
@@ -113,14 +114,22 @@ namespace PerpetualEngine
             postParameters.Add("fileformat", "png"); // TODO more general
             postParameters.Add("file", new FileParameter(data, filePath, "application/octet-stream")); // TODO more general
 
+            var fullResponse = "";
             // Create request and receive response
             string userAgent = "Someone"; // TODO necessary?
-            HttpWebResponse webResponse = MultipartFormDataPost(url, userAgent, postParameters);
+            using (var webResponse = MultipartFormDataPost(url, userAgent, postParameters)) {
 
-            // Process response
-            StreamReader responseReader = new StreamReader(webResponse.GetResponseStream());
-            string fullResponse = responseReader.ReadToEnd();
-            webResponse.Close();
+                // Process response
+                using (var responseReader = new StreamReader(webResponse.GetResponseStream())) {
+                    var c = ' ';
+                    while (c != '}') {
+                        c = (char)responseReader.Read();
+                        fullResponse += c;
+                        if (c == '"')
+                            c = c;
+                    }
+                }
+            }
             return fullResponse;
         }
 
