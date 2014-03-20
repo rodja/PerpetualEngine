@@ -86,13 +86,14 @@ namespace PerpetualEngine
         private void RequestDownload(string url, string filePath)
         {
             var request = HttpWebRequest.Create(url);
-            var response = request.GetResponse();
-            using (var input = response.GetResponseStream()) {
-                using (var output = new FileStream(filePath, FileMode.Create)) {
-                    int bytesRead;
-                    byte[] buffer = new byte[32768];
-                    while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0) {
-                        output.Write(buffer, 0, bytesRead);
+            using (var response = request.GetResponse()) {
+                using (var input = response.GetResponseStream()) {
+                    using (var output = new FileStream(filePath, FileMode.Create)) {
+                        int bytesRead;
+                        byte[] buffer = new byte[32768];
+                        while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0) {
+                            output.Write(buffer, 0, bytesRead);
+                        }
                     }
                 }
             }
@@ -120,13 +121,16 @@ namespace PerpetualEngine
             using (var webResponse = MultipartFormDataPost(url, userAgent, postParameters)) {
 
                 // Process response
-                using (var responseReader = new StreamReader(webResponse.GetResponseStream())) {
-                    var c = ' ';
-                    while (c != '}') {
-                        c = (char)responseReader.Read();
-                        fullResponse += c;
-                        if (c == '"')
-                            c = c;
+                using (var stream = webResponse.GetResponseStream()) {
+                    using (var responseReader = new StreamReader(stream)) {
+                        fullResponse = responseReader.ReadToEnd();
+//                        var c = ' ';
+//                        while (c != '}') {
+//                            c = (char)responseReader.Read();
+//                            fullResponse += c;
+//                            if (c == '"')
+//                                c = c;
+//                        }
                     }
                 }
             }
@@ -168,7 +172,7 @@ namespace PerpetualEngine
             // Send the form data to the request.
             using (Stream requestStream = request.GetRequestStream()) {
                 requestStream.Write(formData, 0, formData.Length);
-                requestStream.Close();
+                //                requestStream.Close();
             }
 
             return request.GetResponse() as HttpWebResponse;
