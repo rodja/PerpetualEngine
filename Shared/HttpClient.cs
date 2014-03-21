@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PerpetualEngine
 {
-    public class Server
+    public class HttpClient
     {
         public string Get(string url)
         {
@@ -86,13 +86,13 @@ namespace PerpetualEngine
         {
             var request = HttpWebRequest.Create(url);
             using (var response = request.GetResponse())
-                using (var input = response.GetResponseStream())
-                    using (var output = new FileStream(filePath, FileMode.Create)) {
-                        int bytesRead;
-                        byte[] buffer = new byte[32768];
-                        while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
-                            output.Write(buffer, 0, bytesRead);
-                    }
+            using (var input = response.GetResponseStream())
+            using (var output = new FileStream(filePath, FileMode.Create)) {
+                int bytesRead;
+                byte[] buffer = new byte[32768];
+                while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+                    output.Write(buffer, 0, bytesRead);
+            }
         }
         //
         //
@@ -113,9 +113,9 @@ namespace PerpetualEngine
 
             var response = "";
             using (var webResponse = MultipartFormDataPost(url, postParameters))
-                using (var stream = webResponse.GetResponseStream())
-                    using (var responseReader = new StreamReader(stream))
-                        response = responseReader.ReadToEnd();
+            using (var stream = webResponse.GetResponseStream())
+            using (var responseReader = new StreamReader(stream))
+                response = responseReader.ReadToEnd();
 
             return response;
         }

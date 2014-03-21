@@ -56,8 +56,8 @@
     <Compile Include="SimpleTimerTests.cs" />
     <Compile Include="Mocks\MockedSimpleTimer.cs" />
     <Compile Include="Storage\SimpleStorageTests.cs" />
-    <Compile Include="Server.cs" />
-    <Compile Include="ServerTests.cs" />
+    <Compile Include="HttpClient.cs" />
+    <Compile Include="HttpClientTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
