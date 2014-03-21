@@ -5,9 +5,15 @@
     <NoTabsAfterNonTabs>True</NoTabsAfterNonTabs>
     <EolMarker>Unix</EolMarker>
   </TextStylePolicy>
-  <TextStylePolicy inheritsSet="null" scope="text/x-csharp" />
+  <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp">
+    <FileWidth>120</FileWidth>
+    <NoTabsAfterNonTabs>True</NoTabsAfterNonTabs>
+    <EolMarker>Unix</EolMarker>
+  </TextStylePolicy>
   <CSharpFormattingPolicy inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp">
     <IndentSwitchBody>True</IndentSwitchBody>
+    <AlignEmbeddedUsingStatements>False</AlignEmbeddedUsingStatements>
+    <AlignEmbeddedIfStatements>False</AlignEmbeddedIfStatements>
     <BeforeMethodDeclarationParentheses>False</BeforeMethodDeclarationParentheses>
     <BeforeMethodCallParentheses>False</BeforeMethodCallParentheses>
     <BeforeConstructorDeclarationParentheses>False</BeforeConstructorDeclarationParentheses>
