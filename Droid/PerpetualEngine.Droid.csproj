@@ -78,8 +78,8 @@
     <Compile Include="..\Shared\Storage\FileCache.cs">
       <Link>Shared\Storage\FileCache.cs</Link>
     </Compile>
-    <Compile Include="..\Shared\Server.cs">
-      <Link>Shared\Server.cs</Link>
+    <Compile Include="..\Shared\HttpClient.cs">
+      <Link>Shared\HttpClient.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
