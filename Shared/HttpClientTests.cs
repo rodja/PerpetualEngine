@@ -55,14 +55,12 @@ namespace PerpetualEngine
         }
 
         [Test()]
-        public void TestGetFileAsync()
+        public async void TestGetFileAsync()
         {
             var file = GenerateFilePath();
-            Task.Run(delegate {
-                httpClient.GetAsync(imgUrl, file);
-            });
-            Assert.That(() => File.Exists(file), Is.True.After(1000, 100));
-            Assert.That(() => new FileInfo(file).Length, Is.EqualTo(23725).After(1000, 100));
+            await httpClient.GetAsync(imgUrl, file);
+            Assert.That(File.Exists(file), Is.True);
+            Assert.That(new FileInfo(file).Length, Is.EqualTo(23725));
         }
 
         [Test()]
