@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace PerpetualEngine
 {
@@ -13,15 +14,21 @@ namespace PerpetualEngine
         const string longUrl = "http://tinyurl.com/api-create.php?url=http://www.perpetual-mobile.de/";
         const string tinyUrl = "http://tinyurl.com/pcyutsv";
         const string imgUrl = "http://thebloodsugartrick.com/images/explenation.png";
-        const string imgPath = "tmp.png";
+        const string testImage = "tmp.png";
         const string postUrl = "http://httpbin.org/post";
         //        const string postUrl = "http://www.posttestserver.com/post.php";
         //        const string postUrl = "http://sipt.perpetual-mobile.de/";
         const string deleteUrl = "http://httpbin.org/delete";
+        string tmpDir = "";
 
         [SetUp]
         public void Setup()
         {
+            tmpDir = Path.GetTempPath() + "httpCacheTests/";
+            Directory.CreateDirectory(tmpDir);
+            foreach (var file in Directory.EnumerateFiles(tmpDir)) {
+                File.Delete(file);
+            }
             httpClient = new HttpClient();
         }
 
@@ -42,23 +49,27 @@ namespace PerpetualEngine
         [Test()]
         public void TestGetFile()
         {
-            httpClient.Get(imgUrl, imgPath);
-            var fileInfo = new FileInfo(imgPath);
+            var file = GenerateFilePath();
+            httpClient.Get(imgUrl, file);
+            var fileInfo = new FileInfo(file);
             Assert.That(fileInfo.Length, Is.EqualTo(23725));
         }
 
         [Test()]
         public void TestGetFileAsync()
         {
-            httpClient.GetAsync(imgUrl, imgPath);
-            var fileInfo = new FileInfo(imgPath);
-            Assert.That(fileInfo.Length, Is.EqualTo(23725));
+            var file = GenerateFilePath();
+            Task.Run(delegate {
+                httpClient.GetAsync(imgUrl, file);
+            });
+            Assert.That(() => File.Exists(file), Is.True.After(1000, 100));
+            Assert.That(() => new FileInfo(file).Length, Is.EqualTo(23725).After(1000, 100));
         }
 
         [Test()]
         public void TestPostFile()
         {
-            var response = httpClient.Post(postUrl, imgPath);
+            var response = httpClient.Post(postUrl, testImage);
             dynamic json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
@@ -68,7 +79,7 @@ namespace PerpetualEngine
         [Test()]
         public async void TestPostFileAsync()
         {
-            var response = await httpClient.PostAsync(postUrl, imgPath);
+            var response = await httpClient.PostAsync(postUrl, testImage);
             dynamic json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
@@ -87,6 +98,11 @@ namespace PerpetualEngine
         {
             var response = await httpClient.DeleteAsync(deleteUrl);
             Assert.That(response, Is.StringContaining("\"data\": \"\""));
+        }
+
+        string GenerateFilePath()
+        {
+            return tmpDir + Guid.NewGuid();
         }
     }
 }
