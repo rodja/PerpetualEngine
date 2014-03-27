@@ -44,7 +44,8 @@ namespace PerpetualEngine.Storage
             inProgress.Add(id);
             try {
                 await Task.Run(() => fetchOperations[id](path));
-            } catch (Exception) {
+            } catch (Exception e) {
+                Console.WriteLine("FileCache Error: " + e.Message);
                 if (File.Exists(path))
                     File.Delete(path);
             }

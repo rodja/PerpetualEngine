@@ -21,27 +21,27 @@ namespace PerpetualEngine
             });
         }
 
-        public void Get(string url, string filePath)
+        public void Get(string url, string destinationPath)
         {
-            RequestDownload(url, filePath);
+            RequestDownload(url, destinationPath);
         }
 
-        public async void GetAsync(string url, string filePath)
+        public async void GetAsync(string url, string destinationPath)
         {
             await Task.Run(() => {
-                Get(url, filePath);
+                Get(url, destinationPath);
             });
         }
 
-        public string Post(string url, string filePath)
+        public string Post(string url, string sourcePath)
         {
-            return RequestUpload(url, filePath);
+            return RequestUpload(url, sourcePath);
         }
 
-        public async Task<string> PostAsync(string url, string filePath)
+        public async Task<string> PostAsync(string url, string sourcePath)
         {
             return await Task.Run(() => {
-                return Post(url, filePath);
+                return Post(url, sourcePath);
             });
         }
 
