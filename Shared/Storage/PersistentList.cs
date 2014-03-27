@@ -112,8 +112,27 @@ namespace PerpetualEngine.Storage
             if (!ids.Contains(id))
                 throw new ApplicationException("Object with id \"" + id + "\" does not exist.");
             var item = ElementWith(id);
-            Save(id, item);
-            Updated(item);
+            Update(id, item);
+        }
+
+        /// <summary>
+        /// Replaces item with specified Id with new instance.
+        /// When this method is used, code listening to the updated event needs to be aware that instances can change!
+        /// </summary>
+        public virtual void Update(T value)
+        {
+            if (!ids.Contains(value.Id))
+                throw new ApplicationException("Object with id \"" + value.Id + "\" does not exist.");
+            var existing = ElementWith(value.Id);
+            var index = items.IndexOf(existing);
+            items[index] = value;
+            Update(value.Id, value);
+        }
+
+        void Update(string id, T value)
+        {
+            Save(id, value);
+            Updated(value);
             if (onUpdatedSubscriptions.ContainsKey(id))
                 onUpdatedSubscriptions[id]();
         }
