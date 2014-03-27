@@ -33,21 +33,26 @@ namespace PerpetualEngine.Storage
 
             string path = Directory + "/" + id;
 
-            await Task.Run(delegate {
-                while (inProgress.Contains(id))
-                    Thread.Sleep(100);
-            });
+            if (inProgress.Contains(id))
+                await Task.Run(delegate {
+                    while (inProgress.Contains(id))
+                        Thread.Sleep(100);
+                });
 
             if (File.Exists(path))
                 return path;
 
             inProgress.Add(id);
             try {
-                await Task.Run(() => fetchOperations[id](path));
+                await Task.Run(() => {
+                    Console.WriteLine("executing new fetch for " + id);
+                    fetchOperations[id](path);
+                });
             } catch (Exception e) {
                 Console.WriteLine("FileCache Error: " + e.Message);
                 if (File.Exists(path))
                     File.Delete(path);
+                return null;
             }
             inProgress.Remove(id);
 
