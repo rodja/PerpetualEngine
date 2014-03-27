@@ -14,7 +14,6 @@ namespace PerpetualEngine
         const string longUrl = "http://tinyurl.com/api-create.php?url=http://www.perpetual-mobile.de/";
         const string tinyUrl = "http://tinyurl.com/pcyutsv";
         const string imgUrl = "http://thebloodsugartrick.com/images/explenation.png";
-        const string testImage = "tmp.png";
         const string postUrl = "http://httpbin.org/post";
         //        const string postUrl = "http://www.posttestserver.com/post.php";
         //        const string postUrl = "http://sipt.perpetual-mobile.de/";
@@ -69,7 +68,9 @@ namespace PerpetualEngine
         [Test()]
         public void TestPostFile()
         {
-            var response = httpClient.Post(postUrl, testImage);
+            var file = GenerateFilePath();
+            httpClient.Get(imgUrl, file);
+            var response = httpClient.Post(postUrl, file);
             dynamic json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
@@ -79,7 +80,9 @@ namespace PerpetualEngine
         [Test()]
         public async void TestPostFileAsync()
         {
-            var response = await httpClient.PostAsync(postUrl, testImage);
+            var file = GenerateFilePath();
+            httpClient.Get(imgUrl, file);
+            var response = await httpClient.PostAsync(postUrl, file);
             dynamic json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));

@@ -26,11 +26,13 @@ namespace PerpetualEngine
             RequestDownload(url, destinationPath);
         }
 
-        public async void GetAsync(string url, string destinationPath)
+        public async Task<bool> GetAsync(string url, string destinationPath)
         {
-            await Task.Run(() => {
+            return await Task.Run(() => {
                 Get(url, destinationPath);
+                return true;
             });
+
         }
 
         public string Post(string url, string sourcePath)
