@@ -45,7 +45,7 @@ namespace PerpetualEngine.Storage
             });
 
             Assert.That(() => File.Exists(location), Is.True.After(2000, 120));
-            Assert.That(fetchCount, Is.EqualTo(2));
+            Assert.That(fetchCount, Is.EqualTo(1));
         }
     }
 }
