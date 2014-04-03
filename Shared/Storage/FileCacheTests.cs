@@ -20,6 +20,13 @@ namespace PerpetualEngine.Storage
         }
 
         [Test()]
+        public void TestAutoCreationOfCacheDirectory()
+        {
+            var tmp = Path.GetTempPath() + "fileCache_" + Guid.NewGuid().ToString();
+            FileCache.Directory = tmp;
+        }
+
+        [Test()]
         public void TestSimultaneousFetchingAndGetting()
         {
             Console.WriteLine("starting");

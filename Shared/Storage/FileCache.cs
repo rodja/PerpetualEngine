@@ -8,12 +8,20 @@ namespace PerpetualEngine.Storage
 {
     public class FileCache
     {
-        public static string Directory;
+        static string directory = null;
         public static Dictionary<string, Action<string>> fetchOperations = new Dictionary<string, Action<string>>();
         public static List<string> inProgress = new List<string>();
 
-        public FileCache()
-        {
+        public static string Directory {
+            get {
+                if (directory == null)
+                    Console.WriteLine("FileCache Error: accessing directory before it is set.");
+                return directory;
+            }
+            set {
+                System.IO.Directory.CreateDirectory(value);
+                directory = value;
+            }
         }
 
         public static void Put(string id, Action<string> fetchOperation)
