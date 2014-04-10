@@ -68,7 +68,7 @@ namespace PerpetualEngine
                 count++;
             });
             Assert.That(count, Is.EqualTo(1));
-            Assert.That(() => count, Is.EqualTo(1).After(20));  // t = 30
+            Assert.That(() => count, Is.EqualTo(1).After(20));  // t = 20
             Assert.That(() => count, Is.EqualTo(1).After(360)); // t = 380
             Assert.That(() => count, Is.EqualTo(2).After(40));  // t = 420
             Assert.That(() => count, Is.EqualTo(2).After(360)); // t = 780

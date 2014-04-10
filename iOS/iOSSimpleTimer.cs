@@ -28,7 +28,7 @@ namespace PerpetualEngine
         List<NSTimer> timers;
         List<TimerTemplate> templates;
         ApplicationActivationListener applicationActivationListener;
-        bool running;
+        bool running = false;
 
         public iOSSimpleTimer()
         {
