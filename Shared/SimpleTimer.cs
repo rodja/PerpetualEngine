@@ -22,5 +22,10 @@ namespace PerpetualEngine
         /// Callback actions will not be triggered any more after this call (no pending triggers).
         /// </summary>
         public abstract void Clear();
+
+        /// <summary>
+        /// Return if the timer is currently Running.
+        /// </summary>
+        public abstract bool IsRunning();
     }
 }

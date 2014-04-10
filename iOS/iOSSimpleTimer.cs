@@ -28,6 +28,7 @@ namespace PerpetualEngine
         List<NSTimer> timers;
         List<TimerTemplate> templates;
         ApplicationActivationListener applicationActivationListener;
+        bool running;
 
         public iOSSimpleTimer()
         {
@@ -51,6 +52,7 @@ namespace PerpetualEngine
         /// <summary>calls the given action with the given time span as long as the App is visible on the screen.</summary>
         public override void Repeat(TimeSpan timeSpan, Action action, bool immediate = false)
         {
+            running = true;
             if (immediate)
                 action();
             TimerTemplate template;
@@ -64,6 +66,12 @@ namespace PerpetualEngine
         {
             UnscheduleTimers();
             ClearTemplates();
+            running = false;
+        }
+
+        public override bool IsRunning()
+        {
+            return running;
         }
 
         void UnscheduleTimers()

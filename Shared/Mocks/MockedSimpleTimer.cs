@@ -15,7 +15,7 @@ namespace PerpetualEngine
 
     class MockedSimpleTimer : SimpleTimer
     {
-        bool stop = false;
+        bool running = false;
 
         public override void Repeat(TimeSpan timeSpan, Action action, bool immediate = false)
         {
@@ -26,17 +26,22 @@ namespace PerpetualEngine
 
         async void RepeatAsync(TimeSpan timeSpan, Action action)
         {
-            stop = false;
-            while (!stop) {
+            running = true;
+            while (running) {
                 await timeSpan;
-                if (!stop)
+                if (running)
                     action();
             }
         }
 
         public override void Clear()
         {
-            stop = true;
+            running = false;
+        }
+
+        public override bool IsRunning()
+        {
+            return running;
         }
     }
 }

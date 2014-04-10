@@ -77,6 +77,21 @@ namespace PerpetualEngine
             // commenting out the following yields an error since timer needs some time to stop!
             Assert.That(() => count, Is.EqualTo(2).After(800));
         }
+
+        [Test()]
+        public void TestIsRunning()
+        {
+            var timer = SimpleTimer.Create();
+            var count = 0;
+            timer.Repeat(TimeSpan.FromMilliseconds(100), delegate {
+                count++;
+            });
+            Assert.That(timer.IsRunning());
+            Assert.That(() => timer.IsRunning(), Is.True.After(100));
+
+            timer.Clear();
+            Assert.That(timer.IsRunning(), Is.False);
+            Assert.That(() => timer.IsRunning(), Is.False.After(100));
+        }
     }
 }
-

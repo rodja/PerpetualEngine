@@ -18,6 +18,7 @@ namespace PerpetualEngine
     {
         Handler handler;
         IRunnable restartRunnable;
+        bool running = false;
 
         public DroidSimpleTimer()
         {
@@ -27,6 +28,7 @@ namespace PerpetualEngine
         public override void Repeat(TimeSpan timeSpan, Action action, bool immediate = false)
         {
             Clear();
+            running = true;
             if (immediate)
                 action();
             Action restartAction = () => {
@@ -41,6 +43,12 @@ namespace PerpetualEngine
         {
             handler.RemoveCallbacks(restartRunnable);
             restartRunnable = null;
+            running = false;
+        }
+
+        public override bool IsRunning()
+        {
+            return running;
         }
     }
 }
