@@ -11,15 +11,19 @@ namespace PerpetualEngine
         {
             var timer = SimpleTimer.Create();
             var count = 0;
-            timer.Repeat(TimeSpan.FromMilliseconds(1000), delegate {
+            timer.Repeat(TimeSpan.FromMilliseconds(200), delegate {
                 count++;
             });
             Assert.That(count, Is.EqualTo(0));
-            Assert.That(() => count, Is.EqualTo(0).After(100)); // t = 100
-            Assert.That(() => count, Is.EqualTo(0).After(800)); // t = 900
-            Assert.That(() => count, Is.EqualTo(1).After(200)); // t = 1100
-            Assert.That(() => count, Is.EqualTo(1).After(800)); // t = 1900
-            Assert.That(() => count, Is.EqualTo(2).After(200)); // t = 2100
+            Assert.That(() => count, Is.EqualTo(0).After(20));  // t = 20
+            Assert.That(() => count, Is.EqualTo(0).After(160)); // t = 180
+            Assert.That(() => count, Is.EqualTo(1).After(40));  // t = 220
+            Assert.That(() => count, Is.EqualTo(1).After(160)); // t = 380
+            Assert.That(() => count, Is.EqualTo(2).After(40));  // t = 420
+            timer.Clear();
+            Assert.That(count, Is.EqualTo(2));
+            // commenting out the following yields an error since timer needs some time to stop!
+            Assert.That(() => count, Is.EqualTo(2).After(400));
         }
 
         [Test()]
@@ -27,15 +31,51 @@ namespace PerpetualEngine
         {
             var timer = SimpleTimer.Create();
             var count = 0;
-            timer.Repeat(TimeSpan.FromMilliseconds(1000), delegate {
+            timer.Repeat(TimeSpan.FromMilliseconds(200), delegate {
                 count++;
             }, true);
             Assert.That(count, Is.EqualTo(1));
-            Assert.That(() => count, Is.EqualTo(1).After(100)); // t = 100
-            Assert.That(() => count, Is.EqualTo(1).After(800)); // t = 900
-            Assert.That(() => count, Is.EqualTo(2).After(200)); // t = 1100
-            Assert.That(() => count, Is.EqualTo(2).After(800)); // t = 1900
-            Assert.That(() => count, Is.EqualTo(3).After(200)); // t = 2100
+            Assert.That(() => count, Is.EqualTo(1).After(20));  // t = 20
+            Assert.That(() => count, Is.EqualTo(1).After(160)); // t = 180
+            Assert.That(() => count, Is.EqualTo(2).After(40));  // t = 220
+            Assert.That(() => count, Is.EqualTo(2).After(160)); // t = 380
+            Assert.That(() => count, Is.EqualTo(3).After(40));  // t = 420
+            timer.Clear();
+            Assert.That(count, Is.EqualTo(3));
+            // commenting out the following yields an error since timer needs some time to stop!
+            Assert.That(() => count, Is.EqualTo(3).After(400));
+        }
+
+        [Test()]
+        public void TestChangingSpan()
+        {
+            var timer = SimpleTimer.Create();
+            var count = 0;
+            timer.Repeat(TimeSpan.FromMilliseconds(200), delegate {
+                count++;
+            });
+            Assert.That(count, Is.EqualTo(0));
+            Assert.That(() => count, Is.EqualTo(0).After(20));  // t = 20
+            Assert.That(() => count, Is.EqualTo(0).After(160)); // t = 180
+            Assert.That(() => count, Is.EqualTo(1).After(40));  // t = 220
+            Assert.That(() => count, Is.EqualTo(1).After(160)); // t = 380
+            timer.Clear();
+            Assert.That(count, Is.EqualTo(1));
+            // commenting out the following yields an error since timer needs some time to stop!
+            Assert.That(() => count, Is.EqualTo(1).After(400));
+
+            timer.Repeat(TimeSpan.FromMilliseconds(400), delegate {
+                count++;
+            });
+            Assert.That(count, Is.EqualTo(1));
+            Assert.That(() => count, Is.EqualTo(1).After(20));  // t = 30
+            Assert.That(() => count, Is.EqualTo(1).After(360)); // t = 380
+            Assert.That(() => count, Is.EqualTo(2).After(40));  // t = 420
+            Assert.That(() => count, Is.EqualTo(2).After(360)); // t = 780
+            timer.Clear();
+            Assert.That(count, Is.EqualTo(2));
+            // commenting out the following yields an error since timer needs some time to stop!
+            Assert.That(() => count, Is.EqualTo(2).After(800));
         }
     }
 }
