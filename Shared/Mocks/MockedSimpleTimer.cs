@@ -29,7 +29,8 @@ namespace PerpetualEngine
             stop = false;
             while (!stop) {
                 await timeSpan;
-                action();
+                if (!stop)
+                    action();
             }
         }
 
