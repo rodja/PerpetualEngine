@@ -49,8 +49,10 @@ namespace PerpetualEngine
         }
 
         /// <summary>calls the given action with the given time span as long as the App is visible on the screen.</summary>
-        public override void Repeat(TimeSpan timeSpan, Action action)
+        public override void Repeat(TimeSpan timeSpan, Action action, bool immediate = false)
         {
+            if (immediate)
+                action();
             TimerTemplate template;
             template.TimeSpan = timeSpan;
             template.Action = action;

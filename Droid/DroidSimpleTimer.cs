@@ -24,9 +24,11 @@ namespace PerpetualEngine
             handler = new Handler();
         }
 
-        public override void Repeat(TimeSpan timeSpan, Action action)
+        public override void Repeat(TimeSpan timeSpan, Action action, bool immediate = false)
         {
             Clear();
+            if (immediate)
+                action();
             Action restartAction = () => {
                 action();
                 handler.PostDelayed(restartRunnable, (int)timeSpan.TotalMilliseconds);

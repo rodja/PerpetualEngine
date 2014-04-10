@@ -17,8 +17,10 @@ namespace PerpetualEngine
     {
         bool stop = false;
 
-        public override void Repeat(TimeSpan timeSpan, Action action)
+        public override void Repeat(TimeSpan timeSpan, Action action, bool immediate = false)
         {
+            if (immediate)
+                action();
             RepeatAsync(timeSpan, action);
         }
 

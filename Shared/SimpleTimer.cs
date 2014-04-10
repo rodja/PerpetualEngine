@@ -15,7 +15,7 @@ namespace PerpetualEngine
         /// <summary>Schedule timer.</summary>
         /// <param name="timeSpan">Trigger interval.</param>
         /// <param name="action">To be executed when timer triggers.</param>
-        public abstract void Repeat(TimeSpan timeSpan, Action action);
+        public abstract void Repeat(TimeSpan timeSpan, Action action, bool immediate = false);
 
         /// <summary>
         /// Remove timers.
