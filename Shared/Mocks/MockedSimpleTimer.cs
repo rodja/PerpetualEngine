@@ -8,6 +8,7 @@ namespace PerpetualEngine
         static SimpleTimer()
         {
             SimpleTimer.Create = () => {
+                Message.Log("SimpleTimer", "creating new mocked timer");
                 return new MockedSimpleTimer();
             };
         }
@@ -29,8 +30,9 @@ namespace PerpetualEngine
             running = true;
             while (running) {
                 await timeSpan;
-                if (running)
+                if (running) {
                     action();
+                }
             }
         }
 

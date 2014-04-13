@@ -59,6 +59,7 @@
     <Compile Include="HttpClient.cs" />
     <Compile Include="HttpClientTests.cs" />
     <Compile Include="Storage\FileCacheTests.cs" />
+    <Compile Include="Message.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
