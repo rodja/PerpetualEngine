@@ -96,9 +96,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\SimpleStorage.iOS.csproj">
-      <Project>{638A785D-0AF8-429A-9C16-675015A42113}</Project>
-      <Name>SimpleStorage.iOS</Name>
+    <ProjectReference Include="..\PerpetualEngine.iOS.csproj">
+      <Project>{53E80655-9589-4B19-8A78-51084EE977E8}</Project>
+      <Name>PerpetualEngine.iOS</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
