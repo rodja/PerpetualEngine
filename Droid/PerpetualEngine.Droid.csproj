@@ -81,6 +81,7 @@
     <Compile Include="..\Shared\HttpClient.cs">
       <Link>Shared\HttpClient.cs</Link>
     </Compile>
+    <Compile Include="UIHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
