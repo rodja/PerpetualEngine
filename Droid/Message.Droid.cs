@@ -2,14 +2,21 @@
 using Newtonsoft.Json;
 using System.Linq;
 using System.Text;
+using Android.Widget;
+using Android.Content;
 
 namespace PerpetualEngine
 {
     public partial class Message
     {
-        public static StringBuilder LogHistory = null;
+        static Context context;
 
-        public static void Log(object sender, string message, params object[] messages)
+        public static void SetContext(Context c)
+        {
+            context = c;
+        }
+
+        public static void Show(string message, params object[] messages)
         {
             var items = messages.Select(m => 
             JsonConvert.SerializeObject(m, 
@@ -18,9 +25,8 @@ namespace PerpetualEngine
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 }));
 
-            var prefix = sender is string ? sender : sender.GetType().Name;
-            var msg = prefix + ": " + message + (items.Count() > 0 ? "; " : "") + String.Join(", ", items);
-            Console.WriteLine(msg);
+            var msg = message + (items.Count() > 0 ? "; " : "") + String.Join(", ", items);
+            Toast.MakeText(context, msg, ToastLength.Short).Show();
             if (LogHistory != null)
                 LogHistory.AppendLine(DateTime.Now.ToString() + " " + msg);
         }

@@ -82,6 +82,10 @@
       <Link>Shared\HttpClient.cs</Link>
     </Compile>
     <Compile Include="UIHelper.cs" />
+    <Compile Include="..\Shared\Message.cs">
+      <Link>Shared\Message.cs</Link>
+    </Compile>
+    <Compile Include="Message.Droid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

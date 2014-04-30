@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Util;
 using Android.Views;
 
-namespace Sipt.Droid
+namespace PerpetualEngine.Droid
 {
     public static class HelpfulExtensions
     {

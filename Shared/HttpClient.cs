@@ -67,13 +67,13 @@ namespace PerpetualEngine
             try {
                 using (var response = request.GetResponse() as HttpWebResponse) {
                     if (response.StatusCode != HttpStatusCode.OK)
-                        Console.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+                        Message.Log(this, "Error fetching data. Server returned status code: {0}", response.StatusCode);
                     using (var reader = new StreamReader(response.GetResponseStream())) {
                         var content = reader.ReadToEnd();
                         if (string.IsNullOrWhiteSpace(content))
-                            Console.WriteLine("Response contained empty body...");
+                            Message.Log(this, "Response contained empty body...");
                         else {
-                            Console.WriteLine("Response body: \r\n {0}", content);
+                            Message.Log(this, "Response body: \r\n {0}", content);
                             return content;
                         }
                     }

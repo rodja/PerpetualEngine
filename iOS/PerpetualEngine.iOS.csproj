@@ -80,5 +80,8 @@
     <Compile Include="..\Shared\HttpClient.cs">
       <Link>Shared\HttpClient.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Message.cs">
+      <Link>Shared\Message.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>
