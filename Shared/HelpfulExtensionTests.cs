@@ -10,7 +10,7 @@ namespace PerpetualEngine
         public void TestConvertingUnixTimeStampToDateTime()
         {
             long timeStamp = 1401361125;
-            Assert.That(timeStamp.ToDateTime(), Is.EqualTo(DateTime.Parse("Thu, 29 May 2014 08:58:45 GMT")));
+            Assert.That(timeStamp.ToDateTime(DateTimeKind.Utc), Is.EqualTo(DateTime.Parse("Thu, 29 May 2014 08:58:45 GMT")));
         }
 
         [Test()]

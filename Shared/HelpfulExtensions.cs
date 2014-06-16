@@ -94,10 +94,10 @@ namespace PerpetualEngine
         }
 
         // from http://stackoverflow.com/questions/249760/how-to-convert-unix-timestamp-to-datetime-and-vice-versa
-        public static DateTime ToDateTime(this long unixTimeStamp)
+        public static DateTime ToDateTime(this long unixTimeStamp, System.DateTimeKind kind)
         {
             // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, kind);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
             return dtDateTime;
         }
@@ -105,7 +105,7 @@ namespace PerpetualEngine
         // from http://stackoverflow.com/questions/249760/how-to-convert-unix-timestamp-to-datetime-and-vice-versa
         public static long ToUnixTimeStamp(this DateTime date)
         {
-            TimeSpan span = (date - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
+            TimeSpan span = (date - new DateTime(1970, 1, 1, 0, 0, 0, 0, date.Kind));
             return (long)span.TotalSeconds;
         }
     }
