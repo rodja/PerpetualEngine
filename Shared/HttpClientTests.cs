@@ -39,6 +39,14 @@ namespace PerpetualEngine
         }
 
         [Test()]
+        public void TestGetAuth()
+        {
+            httpClient.Credentials = new System.Net.NetworkCredential("user", "passwd");
+            var response = httpClient.Get("http://httpbin.org/basic-auth/user/passwd");
+            Assert.That(response, Is.EqualTo("{\n  \"authenticated\": true, \n  \"user\": \"user\"\n}"));
+        }
+
+        [Test()]
         public async void TestGetAsync()
         {
             var response = await httpClient.GetAsync(longUrl);

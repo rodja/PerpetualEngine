@@ -9,6 +9,8 @@ namespace PerpetualEngine
 {
     public class HttpClient
     {
+        public NetworkCredential Credentials = null;
+
         public string Get(string url)
         {
             return Request("GET", url);
@@ -64,6 +66,7 @@ namespace PerpetualEngine
             var request = HttpWebRequest.Create(url);
             request.ContentType = "application/json";
             request.Method = method;
+            request.Credentials = Credentials;
             try {
                 using (var response = request.GetResponse() as HttpWebResponse) {
                     if (response.StatusCode != HttpStatusCode.OK)
@@ -87,6 +90,7 @@ namespace PerpetualEngine
         private void RequestDownload(string url, string filePath)
         {
             var request = HttpWebRequest.Create(url);
+            request.Credentials = Credentials;
             using (var response = request.GetResponse())
             using (var input = response.GetResponseStream())
             using (var output = new FileStream(filePath, FileMode.Create)) {
@@ -124,7 +128,7 @@ namespace PerpetualEngine
 
         private static readonly Encoding encoding = Encoding.UTF8;
 
-        private static HttpWebResponse MultipartFormDataPost(string postUrl, Dictionary<string, object> postParameters)
+        private HttpWebResponse MultipartFormDataPost(string postUrl, Dictionary<string, object> postParameters)
         {
             var formDataBoundary = String.Format("----------{0:N}", Guid.NewGuid());
             var contentType = "multipart/form-data; boundary=" + formDataBoundary;
@@ -134,7 +138,7 @@ namespace PerpetualEngine
             return PostForm(postUrl, contentType, formData);
         }
 
-        private static HttpWebResponse PostForm(string postUrl, string contentType, byte[] formData)
+        private HttpWebResponse PostForm(string postUrl, string contentType, byte[] formData)
         {
             var request = WebRequest.Create(postUrl) as HttpWebRequest;
             if (request == null)
@@ -144,6 +148,7 @@ namespace PerpetualEngine
             request.ContentType = contentType;
             request.CookieContainer = new CookieContainer();
             request.ContentLength = formData.Length;
+            request.Credentials = Credentials;
 
             // You could add authentication here as well if needed:
             // request.PreAuthenticate = true;
