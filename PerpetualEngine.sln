@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Tests", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS.Tests", "iOS\Tests\PerpetualEngine.iOS.Tests.csproj", "{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{2C4F03C2-1B3D-4837-BA8C-CFDF2B44A55D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{2C4F03C2-1B3D-4837-BA8C-CFDF2B44A55D}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)HelpfulExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimpleTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Flag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEventExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\FileCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\IIdentifiable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\JsonPersistingList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\PersistentList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\SimpleStorage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Storage\" />
+  </ItemGroup>
+</Project>

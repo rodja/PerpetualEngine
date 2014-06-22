@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{56F680A8-D066-4F55-922A-8D28AEB598BB}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,41 +50,8 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="DroidSimpleTimer.cs" />
     <Compile Include="Storage\DroidSimpleStorage.cs" />
-    <Compile Include="..\Shared\SimpleTimer.cs">
-      <Link>Shared\SimpleTimer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\SimpleStorage.cs">
-      <Link>Shared\Storage\SimpleStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\HelpfulExtensions.cs">
-      <Link>Shared\HelpfulExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\PersistentList.cs">
-      <Link>Shared\Storage\PersistentList.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\IIdentifiable.cs">
-      <Link>Shared\Storage\IIdentifiable.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\JsonPersistingList.cs">
-      <Link>Shared\Storage\JsonPersistingList.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\IEventExecutor.cs">
-      <Link>Shared\IEventExecutor.cs</Link>
-    </Compile>
     <Compile Include="HelpfulExtensions.Droid.cs" />
-    <Compile Include="..\Shared\Flag.cs">
-      <Link>Shared\Flag.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\FileCache.cs">
-      <Link>Shared\Storage\FileCache.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\HttpClient.cs">
-      <Link>Shared\HttpClient.cs</Link>
-    </Compile>
     <Compile Include="UIHelper.cs" />
-    <Compile Include="..\Shared\Message.cs">
-      <Link>Shared\Message.cs</Link>
-    </Compile>
     <Compile Include="Message.Droid.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,10 +60,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Storage\" />
-    <Folder Include="Shared\" />
-    <Folder Include="Shared\Storage\" />
   </ItemGroup>
 </Project>

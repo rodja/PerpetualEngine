@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{53E80655-9589-4B19-8A78-51084EE977E8}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -42,46 +42,12 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Storage\" />
-    <Folder Include="Shared\" />
-    <Folder Include="Shared\Storage\" />
   </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="ApplicationActivationListener.cs" />
     <Compile Include="iOSSimpleTimer.cs" />
     <Compile Include="Storage\iOSSimpleStorage.cs" />
-    <Compile Include="..\Shared\SimpleTimer.cs">
-      <Link>Shared\SimpleTimer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\SimpleStorage.cs">
-      <Link>Shared\Storage\SimpleStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\HelpfulExtensions.cs">
-      <Link>Shared\HelpfulExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\PersistentList.cs">
-      <Link>Shared\Storage\PersistentList.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\IIdentifiable.cs">
-      <Link>Shared\Storage\IIdentifiable.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\JsonPersistingList.cs">
-      <Link>Shared\Storage\JsonPersistingList.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\IEventExecutor.cs">
-      <Link>Shared\IEventExecutor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Flag.cs">
-      <Link>Shared\Flag.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Storage\FileCache.cs">
-      <Link>Shared\Storage\FileCache.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\HttpClient.cs">
-      <Link>Shared\HttpClient.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Message.cs">
-      <Link>Shared\Message.cs</Link>
-    </Compile>
   </ItemGroup>
 </Project>

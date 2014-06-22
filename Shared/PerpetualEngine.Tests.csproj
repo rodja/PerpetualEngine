@@ -41,27 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\FileCache.cs" />
-    <Compile Include="Storage\IIdentifiable.cs" />
-    <Compile Include="Storage\JsonPersistingList.cs" />
     <Compile Include="Storage\JsonPersistingListTests.cs" />
     <Compile Include="Storage\PersistenListTests.cs" />
-    <Compile Include="Storage\PersistentList.cs" />
-    <Compile Include="Storage\SimpleStorage.cs" />
-    <Compile Include="Flag.cs" />
-    <Compile Include="HelpfulExtensions.cs" />
-    <Compile Include="IEventExecutor.cs" />
-    <Compile Include="SimpleTimer.cs" />
     <Compile Include="Mocks\MockedSimpleStorage.cs" />
     <Compile Include="SimpleTimerTests.cs" />
     <Compile Include="Mocks\MockedSimpleTimer.cs" />
     <Compile Include="Storage\SimpleStorageTests.cs" />
-    <Compile Include="HttpClient.cs" />
     <Compile Include="HttpClientTests.cs" />
     <Compile Include="Storage\FileCacheTests.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="HelpfulExtensionTests.cs" />
   </ItemGroup>
+  <Import Project="Shared.projitems" Label="Shared" Condition="Exists('Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Storage\" />
