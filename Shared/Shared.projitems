@@ -20,8 +20,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\PersistentList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\SimpleStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Msg.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Forms\Setting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Storage\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Forms\" />
   </ItemGroup>
 </Project>
