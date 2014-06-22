@@ -8,7 +8,7 @@ namespace PerpetualEngine
         static SimpleTimer()
         {
             SimpleTimer.Create = () => {
-                Message.Log("SimpleTimer", "creating new mocked timer");
+                Msg.Log("SimpleTimer", "creating new mocked timer");
                 return new MockedSimpleTimer();
             };
         }

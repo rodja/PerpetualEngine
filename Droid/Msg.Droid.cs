@@ -7,7 +7,7 @@ using Android.Content;
 
 namespace PerpetualEngine
 {
-    public partial class Message
+    public partial class Msg
     {
         static Context context;
 

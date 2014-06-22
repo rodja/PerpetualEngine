@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)HelpfulExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SimpleTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Flag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEventExecutor.cs" />
@@ -20,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\JsonPersistingList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\PersistentList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\SimpleStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Msg.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Storage\" />

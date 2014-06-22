@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PerpetualEngine
 {
-    public partial class Message
+    public partial class Msg
     {
         public static StringBuilder LogHistory = null;
 

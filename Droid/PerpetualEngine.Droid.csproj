@@ -52,7 +52,7 @@
     <Compile Include="Storage\DroidSimpleStorage.cs" />
     <Compile Include="HelpfulExtensions.Droid.cs" />
     <Compile Include="UIHelper.cs" />
-    <Compile Include="Message.Droid.cs" />
+    <Compile Include="Msg.Droid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
