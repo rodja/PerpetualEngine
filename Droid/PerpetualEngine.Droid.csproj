@@ -67,6 +67,7 @@
     <Compile Include="Msg.Droid.cs" />
     <Compile Include="Forms\SettingsRenderer.cs" />
     <Compile Include="Forms\TextSettingsRenderer.cs" />
+    <Compile Include="Forms\Renderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
