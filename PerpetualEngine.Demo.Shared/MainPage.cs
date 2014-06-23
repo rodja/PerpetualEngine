@@ -34,6 +34,7 @@ namespace PerpetualEngine.Demo
             var car = new SelectionSetting("cars", "Which Car?"){ Options = new Dictionary<string, string>() };
 
             Content = new TableView {
+                HasUnevenRows = true,
                 Root = new TableRoot() {
                     new TableSection { toggle, username, fruit, car }
                 }
