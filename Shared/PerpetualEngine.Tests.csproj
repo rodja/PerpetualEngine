@@ -51,7 +51,7 @@
     <Compile Include="Storage\FileCacheTests.cs" />
     <Compile Include="HelpfulExtensionTests.cs" />
   </ItemGroup>
-  <Import Project="Shared.projitems" Label="Shared" Condition="Exists('Shared.projitems')" />
+  <Import Project="..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Storage\" />

@@ -43,7 +43,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Storage\" />
   </ItemGroup>
-  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
+  <Import Project="..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="ApplicationActivationListener.cs" />

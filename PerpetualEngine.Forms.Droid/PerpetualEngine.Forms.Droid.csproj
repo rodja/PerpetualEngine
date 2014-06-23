@@ -53,6 +53,9 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.1.1.1.6206\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -69,12 +72,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <Import Project="..\PerpetualEngine.Forms.Shared\PerpetualEngine.Forms.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Forms.Shared\PerpetualEngine.Forms.Shared.projitems')" />
+  <Import Project="..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.1.1.6206/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\Droid\PerpetualEngine.Droid.csproj">
-      <Project>{56F680A8-D066-4F55-922A-8D28AEB598BB}</Project>
-      <Name>PerpetualEngine.Droid</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

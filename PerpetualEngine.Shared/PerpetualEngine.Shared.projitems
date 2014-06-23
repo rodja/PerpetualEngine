@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{71F3F6D0-2165-47A9-A1E0-6F50297FEDBA}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PerpetualEngine.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Flag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpfulExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEventExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Msg.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimpleTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\FileCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\IIdentifiable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\JsonPersistingList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\PersistentList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\SimpleStorage.cs" />
+  </ItemGroup>
+</Project>

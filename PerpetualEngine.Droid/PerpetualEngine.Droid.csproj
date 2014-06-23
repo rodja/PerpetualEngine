@@ -60,7 +60,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
-  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
+  <Import Project="..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Storage\" />

@@ -1,19 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS", "iOS\PerpetualEngine.iOS.csproj", "{53E80655-9589-4B19-8A78-51084EE977E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Droid", "Droid\PerpetualEngine.Droid.csproj", "{56F680A8-D066-4F55-922A-8D28AEB598BB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Tests", "Shared\PerpetualEngine.Tests.csproj", "{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS.Tests", "iOS\Tests\PerpetualEngine.iOS.Tests.csproj", "{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{2C4F03C2-1B3D-4837-BA8C-CFDF2B44A55D}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PerpetualEngine.Forms.Shared", "PerpetualEngine.Forms.Shared\PerpetualEngine.Forms.Shared.shproj", "{2BD61002-E407-4232-9C34-7B713700EC87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Forms.Droid", "PerpetualEngine.Forms.Droid\PerpetualEngine.Forms.Droid.csproj", "{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PerpetualEngine.Shared", "PerpetualEngine.Shared\PerpetualEngine.Shared.shproj", "{71F3F6D0-2165-47A9-A1E0-6F50297FEDBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Droid", "PerpetualEngine.Droid\PerpetualEngine.Droid.csproj", "{56F680A8-D066-4F55-922A-8D28AEB598BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS", "PerpetualEngine.iOS\PerpetualEngine.iOS.csproj", "{53E80655-9589-4B19-8A78-51084EE977E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,22 +57,6 @@ Global
 		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|iPhone.Build.0 = Release|Any CPU
 		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhone.Build.0 = Debug|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhone.ActiveCfg = Release|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhone.Build.0 = Release|iPhone
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
 		{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
