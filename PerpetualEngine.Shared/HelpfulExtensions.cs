@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace PerpetualEngine
 {
@@ -107,6 +108,34 @@ namespace PerpetualEngine
         {
             TimeSpan span = (date - new DateTime(1970, 1, 1, 0, 0, 0, 0, date.Kind));
             return (long)span.TotalSeconds;
+        }
+
+        // from http://malvinly.com/2011/02/28/idictionary-from-anonymous-type-2/
+        // usage:
+        public static IDictionary<string, object> ToDictionary(this object data)
+        {
+            var publicAttributes = BindingFlags.Public | BindingFlags.Instance;
+            var dictionary = new Dictionary<string, object>();
+
+            foreach (var property in data.GetType().GetProperties(publicAttributes)) {
+                if (property.CanRead)
+                    dictionary.Add(property.Name, property.GetValue(data, null));
+            }
+
+            return dictionary;
+        }
+
+        public static IDictionary<string, string> ToOptions(this object data)
+        {
+            var publicAttributes = BindingFlags.Public | BindingFlags.Instance;
+            var dictionary = new Dictionary<string, string>();
+
+            foreach (var property in data.GetType().GetProperties(publicAttributes)) {
+                if (property.CanRead)
+                    dictionary.Add(property.Name, property.GetValue(data, null).ToString());
+            }
+
+            return dictionary;
         }
     }
 }

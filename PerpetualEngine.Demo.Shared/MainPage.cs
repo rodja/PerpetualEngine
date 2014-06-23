@@ -17,14 +17,7 @@ namespace PerpetualEngine.Demo
                     new TableSection {
                         new SwitchSetting("demo_switch", "Demo Switch"),
                         new TextSetting("username", "Username Input Example"),
-                        new SelectionSetting("fruit", "Which Fruit?") { Options = new Dictionary<string, string> { {
-                                    "id_1",
-                                    "apple"
-                                }, {
-                                    "id_2",
-                                    "banana"
-                                }
-                            }
+                        new SelectionSetting("fruit", "Which Fruit?") { Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions()
                         },
                         new SelectionSetting("cars", "Which Car?"){ Options = new Dictionary<string, string>() },
                     }
