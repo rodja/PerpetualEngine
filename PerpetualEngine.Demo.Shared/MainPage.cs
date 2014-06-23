@@ -19,15 +19,7 @@ namespace PerpetualEngine.Demo
             username.OnValueChanged += delegate {
                 Msg.Log(this, "username changed");
             };
-            var fruit = new SelectionSetting("fruit", "Which Fruit?") { Options = new Dictionary<string, string> { {
-                        "id_1",
-                        "apple"
-                    }, {
-                        "id_2",
-                        "banana"
-                    }
-                }
-            };
+            var fruit = new SelectionSetting("fruit", "Which Fruit?") { Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions() };
             fruit.OnValueChanged += delegate {
                 Msg.Log(this, "fruit changed");
             };
