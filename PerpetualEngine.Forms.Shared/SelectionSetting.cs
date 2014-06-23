@@ -6,7 +6,7 @@ namespace PerpetualEngine.Forms
 
     public class SelectionSetting: Setting
     {
-        public IDictionary<string, string> Options;
+        public IDictionary<string, string> Options = new {}.ToOptions();
 
         public SelectionSetting(string key, string title) : base(key, title)
         {

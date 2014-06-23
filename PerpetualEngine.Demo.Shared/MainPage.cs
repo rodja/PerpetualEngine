@@ -23,7 +23,7 @@ namespace PerpetualEngine.Demo
             fruit.OnValueChanged += delegate {
                 Msg.Log(this, "fruit changed");
             };
-            var car = new SelectionSetting("cars", "Which Car?"){ Options = new Dictionary<string, string>() };
+            var car = new SelectionSetting("cars", "Which Car?");
 
             Content = new TableView {
                 HasUnevenRows = true,
