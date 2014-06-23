@@ -53,10 +53,15 @@ namespace PerpetualEngine.Forms
                 return storage.Get(Key, "");
             }
             set {
+                var changed = !value.Equals(Value, StringComparison.Ordinal);
+
                 Description.Text = value;
                 storage.Put(Key, value);
 
                 Description.IsVisible = DescriptionVisible;
+
+                if (changed)
+                    OnValueChanged(this, new EventArgs());
             }
         }
 
@@ -65,6 +70,8 @@ namespace PerpetualEngine.Forms
                 return !String.IsNullOrEmpty(Value);
             }
         }
+
+        public event EventHandler OnValueChanged = delegate {};
     }
 }
     
