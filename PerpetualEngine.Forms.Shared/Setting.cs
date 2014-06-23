@@ -43,7 +43,7 @@ namespace PerpetualEngine.Forms
         protected override void OnAppearing()
         {
             // apply current stored value to the ui
-            Value = storage.Get(Key);
+            Value = storage.Get(Key, "");
             base.OnAppearing();
         }
 
@@ -51,7 +51,7 @@ namespace PerpetualEngine.Forms
 
         virtual public string Value {
             get {
-                return storage.Get(Key);
+                return storage.Get(Key, "");
             }
             set {
                 Description.Text = value;
