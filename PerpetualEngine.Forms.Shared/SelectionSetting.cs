@@ -1,6 +1,3 @@
-using System;
-using Xamarin.Forms;
-using PerpetualEngine.Storage;
 using System.Collections.Generic;
 
 namespace PerpetualEngine.Forms
