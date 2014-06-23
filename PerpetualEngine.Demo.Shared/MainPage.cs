@@ -12,6 +12,7 @@ namespace PerpetualEngine.Demo
             Title = "Perpetual Engine";
 
             Content = new TableView {
+                HasUnevenRows = true,
                 Root = new TableRoot() {
                     new TableSection {
                         new SwitchSetting("demo_switch", "Demo Switch"),
