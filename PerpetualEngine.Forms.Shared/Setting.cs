@@ -11,6 +11,8 @@ namespace PerpetualEngine.Forms
 
         public string Title { get; private set; }
 
+        public string Key { get; set; }
+
         protected string DefaultValue;
 
         protected Label Description;
@@ -43,7 +45,7 @@ namespace PerpetualEngine.Forms
         protected override void OnAppearing()
         {
             // apply current stored value to the ui
-            Value = storage.Get(Title, DefaultValue);
+            Value = storage.Get(Key, DefaultValue);
             base.OnAppearing();
         }
 
@@ -51,11 +53,11 @@ namespace PerpetualEngine.Forms
 
         virtual public string Value {
             get {
-                return storage.Get(Title, DefaultValue);
+                return storage.Get(Key, DefaultValue);
             }
             set {
                 Description.Text = value;
-                storage.Put(Title, value);
+                storage.Put(Key, value);
 
                 Description.IsVisible = DescriptionVisible;
             }
