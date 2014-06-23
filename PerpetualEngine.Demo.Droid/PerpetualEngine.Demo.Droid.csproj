@@ -6,16 +6,18 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}</ProjectGuid>
+    <ProjectGuid>{F000EC47-2574-4EA2-8237-0B4BA37C1002}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PerpetualEngine.Forms</RootNamespace>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <AndroidResgenClass>Resource</AndroidResgenClass>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <RootNamespace>PerpetualEngine.Demo</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <AssemblyName>PerpetualEngine.Forms.Droid</AssemblyName>
+    <AssemblyName>PerpetualEngine.Demo.Droid</AssemblyName>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +31,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -53,31 +56,30 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.1.1.1.6206\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="PerpetualEngine.Forms.Droid">
+      <HintPath>..\PerpetualEngine.Forms.Droid\bin\Release\PerpetualEngine.Forms.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="PerpetualEngine.Droid">
+      <HintPath>..\PerpetualEngine.Forms.Droid\bin\Release\PerpetualEngine.Droid.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="SettingsRenderer.cs" />
-    <Compile Include="TextSettingsRenderer.cs" />
-    <Compile Include="ImprovedTextCellRenderer.cs" />
-    <Compile Include="SelectionSettingsRenderer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
-  <Import Project="..\PerpetualEngine.Forms.Shared\PerpetualEngine.Forms.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Forms.Shared\PerpetualEngine.Forms.Shared.projitems')" />
+  <Import Project="..\PerpetualEngine.Demo.Shared\PerpetualEngine.Demo.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Demo.Shared\PerpetualEngine.Demo.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.1.1.6206/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\PerpetualEngine.Droid\PerpetualEngine.Droid.csproj">
-      <Project>{56F680A8-D066-4F55-922A-8D28AEB598BB}</Project>
-      <Name>PerpetualEngine.Droid</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
