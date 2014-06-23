@@ -5,7 +5,7 @@ namespace PerpetualEngine.Forms
 
     public class SwitchSetting: Setting
     {
-        public SwitchSetting(string title, bool defaultValue = false) : base(title, defaultValue ? "on" : "off")
+        public SwitchSetting(string title) : base(title)
         {
             var layout = (View as StackLayout);
             layout.Orientation = StackOrientation.Horizontal;

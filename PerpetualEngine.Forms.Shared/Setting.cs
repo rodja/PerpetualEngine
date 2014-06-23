@@ -13,14 +13,11 @@ namespace PerpetualEngine.Forms
 
         public string Key { get; set; }
 
-        protected string DefaultValue;
-
         protected Label Description;
 
-        public Setting(string title, string defaultValue = "")
+        public Setting(string title)
         {
             this.Title = title;
-            this.DefaultValue = defaultValue;
 
             storage = SimpleStorage.EditGroup("settings");
 
@@ -45,7 +42,7 @@ namespace PerpetualEngine.Forms
         protected override void OnAppearing()
         {
             // apply current stored value to the ui
-            Value = storage.Get(Key, DefaultValue);
+            Value = storage.Get(Key);
             base.OnAppearing();
         }
 
@@ -53,7 +50,7 @@ namespace PerpetualEngine.Forms
 
         virtual public string Value {
             get {
-                return storage.Get(Key, DefaultValue);
+                return storage.Get(Key);
             }
             set {
                 Description.Text = value;

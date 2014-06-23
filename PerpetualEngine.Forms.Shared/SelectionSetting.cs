@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PerpetualEngine.Forms
 {
@@ -7,7 +8,7 @@ namespace PerpetualEngine.Forms
     {
         public Dictionary<string, string> Options;
 
-        public SelectionSetting(string title, string defaultValue = "") : base(title, defaultValue)
+        public SelectionSetting(string title) : base(title)
         {
         }
 
@@ -16,8 +17,10 @@ namespace PerpetualEngine.Forms
                 return base.Value;
             }
             set {
-                if (!Options.ContainsKey(value))
-                    value = DefaultValue;
+                if (Options.Count == 0)
+                    value = "";
+                else if (!Options.ContainsKey(value))
+                    value = Options.Keys.First();
                 base.Value = value;
                 Description.Text = Options[value];
             }
