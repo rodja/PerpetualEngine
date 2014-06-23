@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Tests", "Shared\PerpetualEngine.Tests.csproj", "{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PerpetualEngine.Forms.Shared", "PerpetualEngine.Forms.Shared\PerpetualEngine.Forms.Shared.shproj", "{2BD61002-E407-4232-9C34-7B713700EC87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Forms.Droid", "PerpetualEngine.Forms.Droid\PerpetualEngine.Forms.Droid.csproj", "{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}"
@@ -12,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Droid", "PerpetualEngine.Droid\PerpetualEngine.Droid.csproj", "{56F680A8-D066-4F55-922A-8D28AEB598BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS", "PerpetualEngine.iOS\PerpetualEngine.iOS.csproj", "{53E80655-9589-4B19-8A78-51084EE977E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Tests", "PerpetualEngine.Tests\PerpetualEngine.Tests.csproj", "{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,7 +91,7 @@ Global
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Shared\PerpetualEngine.Tests.csproj
+		StartupItem = PerpetualEngine.Forms.Droid\PerpetualEngine.Forms.Droid.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
