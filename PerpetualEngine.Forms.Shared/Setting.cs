@@ -33,7 +33,6 @@ namespace PerpetualEngine.Forms
                 Text = title,
                 Font = Font.SystemFontOfSize(NamedSize.Large),
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                TextColor = Color.White
             });
             Description = new Label();
             view.Children.Add(Description);
