@@ -11,7 +11,11 @@ using PerpetualEngine.Storage;
 
 namespace PerpetualEngine.Demo
 {
-    [Activity(Label = "PerpetualEngine Demo", MainLauncher = true)]
+    [Activity(
+        Label = "PerpetualEngine Demo",
+        Theme = "@android:style/Theme.Holo.Light",
+        MainLauncher = true
+    )]
     public class MainActivity : AndroidActivity
     {
         protected override void OnCreate(Bundle bundle)
