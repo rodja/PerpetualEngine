@@ -5,8 +5,9 @@ using Android.Content;
 using Android.App;
 using Android.Widget;
 using Xamarin.Forms;
+using PerpetualEngine.Forms;
 
-[assembly: ExportRenderer(typeof(PerpetualEngine.Forms.TextSetting), typeof(PerpetualEngine.Forms.TextSettingRenderer))]
+[assembly: ExportRenderer(typeof(TextSetting), typeof(TextSettingRenderer))]
 
 namespace PerpetualEngine.Forms
 {

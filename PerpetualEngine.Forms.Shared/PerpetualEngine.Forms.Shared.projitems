@@ -10,5 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Setting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SelectionSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SwitchSetting.cs" />
   </ItemGroup>
 </Project>

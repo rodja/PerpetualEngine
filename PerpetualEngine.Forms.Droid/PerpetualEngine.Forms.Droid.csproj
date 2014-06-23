@@ -56,9 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="Renderer.cs" />
     <Compile Include="SettingsRenderer.cs" />
     <Compile Include="TextSettingsRenderer.cs" />
+    <Compile Include="ImprovedTextCellRenderer.cs" />
+    <Compile Include="SelectionSettingsRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

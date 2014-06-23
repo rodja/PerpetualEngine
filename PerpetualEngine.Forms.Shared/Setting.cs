@@ -68,61 +68,6 @@ namespace PerpetualEngine.Forms
             }
         }
     }
-
-    public class TextSetting: Setting
-    {
-        public TextSetting(string title, string defaultValue) : base(title, defaultValue)
-        {
-        }
-    }
-
-    public class SelectionSetting: Setting
-    {
-        public Dictionary<string, string> Options;
-
-        public SelectionSetting(string title, string defaultValue = "") : base(title, defaultValue)
-        {
-        }
-
-        public override string Value {
-            get {
-                return base.Value;
-            }
-            set {
-                if (!Options.ContainsKey(value))
-                    value = DefaultValue;
-                base.Value = value;
-                Description.Text = Options[value];
-            }
-        }
-
-    }
-
-    public class SwitchSetting: Setting
-    {
-        public SwitchSetting(string title, bool defaultValue = false) : base(title, defaultValue ? "on" : "off")
-        {
-            var layout = (View as StackLayout);
-            layout.Orientation = StackOrientation.Horizontal;
-            var toggle = new Switch();
-            toggle.Toggled += (sender, e) => {
-                Value = e.Value ? "on" : "off";
-            };
-            toggle.IsToggled = Value == "on";
-            layout.Children.Add(toggle);
-
-            Tapped += delegate {
-                toggle.IsToggled = !toggle.IsToggled;
-            };
-        }
-
-        protected override bool DescriptionVisible {
-            get {
-                return false;
-            }
-        }
-
-    }
 }
     
 
