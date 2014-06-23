@@ -17,12 +17,15 @@ namespace PerpetualEngine.Forms
                 return base.Value;
             }
             set {
-                if (Options.Count == 0)
-                    value = "";
-                else if (!Options.ContainsKey(value))
-                    value = Options.Keys.First();
-                base.Value = value;
-                Description.Text = Options[value];
+                if (Options.Count == 0) {
+                    base.Value = "";
+                    Description.Text = "";
+                } else {
+                    if (!Options.ContainsKey(value))
+                        value = Options.Keys.First();
+                    base.Value = value;
+                    Description.Text = Options[value];
+                }
             }
         }
 

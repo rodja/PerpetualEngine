@@ -24,7 +24,8 @@ namespace PerpetualEngine.Demo
                                     "banana"
                                 }
                             }
-                        }
+                        },
+                        new SelectionSetting("cars", "Which Car?"){ Options = new Dictionary<string, string>() },
                     }
                 }
             };
