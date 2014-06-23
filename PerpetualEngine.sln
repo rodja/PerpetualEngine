@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS", "Perp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Tests", "PerpetualEngine.Tests\PerpetualEngine.Tests.csproj", "{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.iOS.Tests", "PerpetualEngine.iOS\Tests\PerpetualEngine.iOS.Tests.csproj", "{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,22 @@ Global
 		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|iPhone.Build.0 = Release|Any CPU
 		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{56F680A8-D066-4F55-922A-8D28AEB598BB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhone.Build.0 = Release|iPhone
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9BB15D9E-E09E-4BEA-AAD4-AB908EE9880A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
 		{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
@@ -91,7 +109,7 @@ Global
 		{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = PerpetualEngine.Forms.Droid\PerpetualEngine.Forms.Droid.csproj
+		StartupItem = PerpetualEngine.Tests\PerpetualEngine.Tests.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

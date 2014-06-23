@@ -95,4 +95,10 @@
     <Compile Include="AsyncTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\PerpetualEngine.iOS.csproj">
+      <Project>{53E80655-9589-4B19-8A78-51084EE977E8}</Project>
+      <Name>PerpetualEngine.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
