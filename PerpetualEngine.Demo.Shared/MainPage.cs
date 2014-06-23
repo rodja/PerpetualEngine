@@ -1,5 +1,6 @@
 using System;
 using Xamarin.Forms;
+using PerpetualEngine.Forms;
 
 namespace PerpetualEngine.Demo
 {
@@ -7,10 +8,12 @@ namespace PerpetualEngine.Demo
     {
         public MainPage()
         {
-            Content = new TableView {
-                Root = new TableRoot {
-                    new TableSection {
+            Title = "Perpetual Engine";
 
+            Content = new TableView {
+                Root = new TableRoot() {
+                    new TableSection {
+                        new SwitchSetting("demo_switch", "Demo Switch")
                     }
                 }
             };

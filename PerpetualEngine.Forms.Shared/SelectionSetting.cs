@@ -8,7 +8,7 @@ namespace PerpetualEngine.Forms
     {
         public Dictionary<string, string> Options;
 
-        public SelectionSetting(string title) : base(title)
+        public SelectionSetting(string key, string title) : base(key, title)
         {
         }
 

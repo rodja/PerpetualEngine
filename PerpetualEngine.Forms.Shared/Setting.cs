@@ -11,12 +11,13 @@ namespace PerpetualEngine.Forms
 
         public string Title { get; private set; }
 
-        public string Key { get; set; }
+        public string Key { get; private set; }
 
         protected Label Description;
 
-        public Setting(string title)
+        public Setting(string key, string title)
         {
+            Key = key;
             this.Title = title;
 
             storage = SimpleStorage.EditGroup("settings");

@@ -56,12 +56,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.1.1.1.6206\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="PerpetualEngine.Forms.Droid">
-      <HintPath>..\PerpetualEngine.Forms.Droid\bin\Release\PerpetualEngine.Forms.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="PerpetualEngine.Droid">
-      <HintPath>..\PerpetualEngine.Forms.Droid\bin\Release\PerpetualEngine.Droid.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -82,4 +76,14 @@
   <Import Project="..\PerpetualEngine.Demo.Shared\PerpetualEngine.Demo.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Demo.Shared\PerpetualEngine.Demo.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.1.1.6206/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\PerpetualEngine.Droid\PerpetualEngine.Droid.csproj">
+      <Project>{56F680A8-D066-4F55-922A-8D28AEB598BB}</Project>
+      <Name>PerpetualEngine.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PerpetualEngine.Forms.Droid\PerpetualEngine.Forms.Droid.csproj">
+      <Project>{CC8375C1-CE00-4ACB-9506-CA4FC919D9A5}</Project>
+      <Name>PerpetualEngine.Forms.Droid</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
