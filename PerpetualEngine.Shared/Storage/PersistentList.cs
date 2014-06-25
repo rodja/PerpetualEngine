@@ -84,12 +84,7 @@ namespace PerpetualEngine.Storage
             } 
         }
 
-        public virtual void Add(string id, T value)
-        {
-
-        }
-
-        public virtual void Add(T value)
+        public virtual void Insert(int index, T value)
         {
             var id = value.Id;
             if (id == idListKey)
@@ -97,11 +92,16 @@ namespace PerpetualEngine.Storage
             if (ids.Contains(id))
                 throw new ApplicationException("Object with id \"" + id + "\" already exists.");
             Save(id, value);
-            ids.Add(id);
+            ids.Insert(index, id);
             storage.Put(idListKey, ids);
-            items.Add(value);
+            items.Insert(index, value);
 
             Added(value);
+        }
+
+        public virtual void Add(T value)
+        {
+            Insert(ids.Count, value);
         }
 
         /// <summary>

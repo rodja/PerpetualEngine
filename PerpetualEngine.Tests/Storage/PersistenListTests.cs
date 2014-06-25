@@ -75,6 +75,30 @@ namespace PerpetualEngine.Storage
             var list = BuildTestList();
             Assert.IsTrue(object.ReferenceEquals(list[1], list[1]));
         }
+
+        [Test]
+        public void TestInsertingItems()
+        {
+            var list = BuildTestList();
+            list.Insert(1, new IdentifiableForTesting("x"));
+            Assert.That(list.Count, Is.EqualTo(4));
+            Assert.That(list[1].Id, Is.EqualTo("x"));
+
+            list.Insert(0, new IdentifiableForTesting("y"));
+            Assert.That(list.Count, Is.EqualTo(5));
+            Assert.That(list.First().Id, Is.EqualTo("y"));
+        }
+
+        [Test]
+        public void TestLoadingInsertedItemFromPersistence()
+        {
+            var list = BuildTestList();
+            list.Insert(1, new IdentifiableForTesting("x"));
+            list = new PersistentList<IdentifiableForTesting>(editGroup);
+
+            Assert.That(list.Count, Is.EqualTo(4));
+            Assert.That(list[1].Id, Is.EqualTo("x"));
+        }
     }
 
     [Serializable]
