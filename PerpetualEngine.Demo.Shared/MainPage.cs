@@ -26,11 +26,21 @@ namespace PerpetualEngine.Demo
                 car.Options = new {a = "A", b = "B"}.ToOptions();
             };
 
-            Content = new TableView {
-                HasUnevenRows = true,
-                Root = new TableRoot() {
-                    new TableSection { username, fruit, car, toggle }
-                }
+            Content = new StackLayout {
+                Orientation = StackOrientation.Vertical,
+                Children = {
+                    new TableView {
+                        HasUnevenRows = true,
+                        Root = new TableRoot {
+                            new TableSection {
+                                username,
+                                fruit,
+                                car,
+//                                toggle, // BUG: yields empty, than black page (only TableView within StackLayout)
+                            },
+                        },
+                    },
+                },
             };
         }
     }
