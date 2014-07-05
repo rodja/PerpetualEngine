@@ -4,6 +4,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace PerpetualEngine
 {
@@ -77,10 +78,10 @@ namespace PerpetualEngine
             var file = GenerateFilePath();
             httpClient.Get(imgUrl, file);
             var response = httpClient.Post(postUrl, file);
-            dynamic json = JObject.Parse(response);
+            var json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
-            Assert.That(json["files"].Count, Is.EqualTo(1));
+            Assert.That(json["files"].Count(), Is.EqualTo(1));
         }
 
         [Test()]
