@@ -11,10 +11,6 @@ namespace PerpetualEngine.Demo
         {
             Title = "Perpetual Engine";
 
-            var toggle = new SwitchSetting("demo_switch", "Demo Switch");
-            toggle.OnValueChanged += delegate {
-                Msg.Log(this, "toggle changed");
-            };
             var username = new TextSetting("username", "Username Input Example");
             username.OnValueChanged += delegate {
                 Msg.Log(this, "username changed");
@@ -23,13 +19,28 @@ namespace PerpetualEngine.Demo
             fruit.OnValueChanged += delegate {
                 Msg.Log(this, "fruit changed");
             };
-            var car = new SelectionSetting("cars", "Which Car?"){ Options = new Dictionary<string, string>() };
+            var car = new SelectionSetting("cars", "Which Car?");
+            var toggle = new SwitchSetting("demo_switch", "Demo Switch");
+            toggle.OnValueChanged += delegate {
+                Msg.Log(this, "toggle changed");
+                car.Options = new {a = "A", b = "B"}.ToOptions();
+            };
 
-            Content = new TableView {
-                HasUnevenRows = true,
-                Root = new TableRoot() {
-                    new TableSection { toggle, username, fruit, car }
-                }
+            Content = new StackLayout {
+                Orientation = StackOrientation.Vertical,
+                Children = {
+                    new TableView {
+                        HasUnevenRows = true,
+                        Root = new TableRoot {
+                            new TableSection {
+                                username,
+                                fruit,
+                                car,
+//                                toggle, // BUG: yields empty, than black page (only TableView within StackLayout)
+                            },
+                        },
+                    },
+                },
             };
         }
     }
