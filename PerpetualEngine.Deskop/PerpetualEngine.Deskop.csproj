@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D0A4C3B3-33AB-4768-A7B0-CB08753BAF85}</ProjectGuid>
+    <ProjectGuid>{10270982-734C-45E6-8A07-99F6AF0D2B13}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PerpetualEngine</RootNamespace>
-    <AssemblyName>PerpetualEngine.Tests</AssemblyName>
+    <RootNamespace>PerpetualEngine.Deskop</RootNamespace>
+    <AssemblyName>PerpetualEngine.Deskop</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -19,7 +19,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -27,39 +27,22 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\JsonPersistingListTests.cs" />
-    <Compile Include="Storage\PersistenListTests.cs" />
-    <Compile Include="SimpleTimerTests.cs" />
-    <Compile Include="Storage\SimpleStorageTests.cs" />
-    <Compile Include="HttpClientTests.cs" />
-    <Compile Include="Storage\FileCacheTests.cs" />
-    <Compile Include="HelpfulExtensionTests.cs" />
+    <Compile Include="MockedSimpleStorage.cs" />
+    <Compile Include="MockedSimpleTimer.cs" />
   </ItemGroup>
+  <Import Project="..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems" Label="Shared" Condition="Exists('..\PerpetualEngine.Shared\PerpetualEngine.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Storage\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PerpetualEngine.Deskop\PerpetualEngine.Deskop.csproj">
-      <Project>{10270982-734C-45E6-8A07-99F6AF0D2B13}</Project>
-      <Name>PerpetualEngine.Deskop</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>
