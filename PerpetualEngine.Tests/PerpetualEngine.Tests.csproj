@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PerpetualEngine.Deskop\PerpetualEngine.Desktop.csproj">
+    <ProjectReference Include="..\PerpetualEngine.Desktop\PerpetualEngine.Desktop.csproj">
       <Project>{10270982-734C-45E6-8A07-99F6AF0D2B13}</Project>
       <Name>PerpetualEngine.Desktop</Name>
     </ProjectReference>

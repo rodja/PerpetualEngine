@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Demo.Droid"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Forms.iOS", "PerpetualEngine.Forms.iOS\PerpetualEngine.Forms.iOS.csproj", "{33BC556A-9EC6-446B-B000-04C8B1A9F69C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Desktop", "PerpetualEngine.Deskop\PerpetualEngine.Desktop.csproj", "{10270982-734C-45E6-8A07-99F6AF0D2B13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualEngine.Desktop", "PerpetualEngine.Desktop\PerpetualEngine.Desktop.csproj", "{10270982-734C-45E6-8A07-99F6AF0D2B13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
