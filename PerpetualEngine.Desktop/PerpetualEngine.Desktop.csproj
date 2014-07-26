@@ -8,7 +8,7 @@
     <ProjectGuid>{10270982-734C-45E6-8A07-99F6AF0D2B13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>PerpetualEngine.Deskop</RootNamespace>
-    <AssemblyName>PerpetualEngine.Deskop</AssemblyName>
+    <AssemblyName>PerpetualEngine.Desktop</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
