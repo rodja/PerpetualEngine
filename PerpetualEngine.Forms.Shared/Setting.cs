@@ -31,7 +31,11 @@ namespace PerpetualEngine.Forms
             view.Spacing = 0;
             view.Children.Add(new Label {
                 Text = title,
-                Font = Font.SystemFontOfSize(NamedSize.Large),
+                Font = Device.OnPlatform<Font>(
+                    Font.SystemFontOfSize(NamedSize.Medium),
+                    Font.SystemFontOfSize(NamedSize.Large),
+                    Font.SystemFontOfSize(NamedSize.Medium)
+                ),
                 HorizontalOptions = LayoutOptions.FillAndExpand,
             });
             Description = new Label();
