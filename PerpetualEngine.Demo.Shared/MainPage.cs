@@ -9,26 +9,26 @@ namespace PerpetualEngine.Demo
         {
             Title = "Perpetual Engine";
 
-            var textSetting1 = new TextSetting("Text Setting 1", "textSetting1");
-            textSetting1.OnValueChanged += delegate {
-                Msg.Log(this, "textSetting1 changed");
+            var text1 = new TextSetting("Text 1", "text1");
+            text1.OnValueChanged += delegate {
+                Msg.Log(this, "text1 changed");
             };
 
-            var selectionSetting1 = new SelectionSetting("Selection Setting 1", "selectionSetting1") {
+            var selection1 = new SelectionSetting("Selection 1", "selection1") {
                 Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions(),
             };
-            selectionSetting1.OnValueChanged += delegate {
-                Msg.Log(this, "selectionSetting1 changed");
+            selection1.OnValueChanged += delegate {
+                Msg.Log(this, "selection1 changed");
             };
 
-            var selectionSetting2 = new SelectionSetting("Selection Setting 2", "selectionSetting2");
+            var selection2 = new SelectionSetting("Selection 2 (no options)", "selection2");
 
-            var switchSetting1 = new SwitchSetting("Switch Setting 1 (persistent)", "switchSetting1");
-            switchSetting1.OnValueChanged += delegate {
-                Msg.Log(this, "switchSetting1 changed");
-                selectionSetting2.Options = new {a = "A", b = "B"}.ToOptions();
+            var switch1 = new SwitchSetting("Switch 1 (persistent)", "switch1");
+            switch1.OnValueChanged += delegate {
+                Msg.Log(this, "switch1 changed");
+                selection2.Options = new {a = "A", b = "B"}.ToOptions();
             };
-            var switchSetting2 = new SwitchSetting("Switch Setting 2 (not persistent)");
+            var switch2 = new SwitchSetting("Switch 2 (not persistent)");
 
             Content = new StackLayout {
                 Orientation = StackOrientation.Vertical,
@@ -37,11 +37,11 @@ namespace PerpetualEngine.Demo
                         HasUnevenRows = true,
                         Root = new TableRoot {
                             new TableSection {
-                                textSetting1,
-                                selectionSetting1,
-                                selectionSetting2,
-                                switchSetting1,
-                                switchSetting2,
+                                text1,
+                                selection1,
+                                selection2,
+                                switch1,
+                                switch2,
                             },
                         },
                     },
