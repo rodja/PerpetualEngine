@@ -11,22 +11,26 @@ namespace PerpetualEngine.Demo
 
             var text1 = new TextSetting("Text 1", "text1");
             text1.OnValueChanged += delegate {
-                Msg.Log(this, "text1 changed");
+                Msg.Log(this, "text1 changed: " + text1.Value);
             };
 
             var selection1 = new SelectionSetting("Selection 1", "selection1") {
                 Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions(),
             };
             selection1.OnValueChanged += delegate {
-                Msg.Log(this, "selection1 changed");
+                Msg.Log(this, "selection1 changed: " + selection1.Value);
             };
 
             var selection2 = new SelectionSetting("Selection 2 (no options)", "selection2");
+            selection2.OnValueChanged += delegate {
+                Msg.Log(this, "selection2 changed: " + selection2.Value);
+            };
 
             var switch1 = new SwitchSetting("Switch 1 (persistent)", "switch1");
             switch1.OnValueChanged += delegate {
-                Msg.Log(this, "switch1 changed");
-                selection2.Options = new {a = "A", b = "B"}.ToOptions();
+                Msg.Log(this, "switch1 changed: " + switch1.Value);
+                selection2.Options = new {a = "A", b = "B", c = "C"}.ToOptions();
+                selection2.Title.Text = "A, B or C?";
             };
             var switch2 = new SwitchSetting("Switch 2 (not persistent)");
 

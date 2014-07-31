@@ -12,15 +12,7 @@ namespace PerpetualEngine.Forms
         {
             if (Device.OS == TargetPlatform.iOS)
                 Tapped += delegate {
-                    var listView = new ListView {
-                        ItemsSource = Options.Values,
-                    };
-                    listView.ItemTapped += (sender, e) => {
-//                    TODO
-                    };
-                    ParentView.Navigation.PushAsync(new ContentPage {
-                        Content = listView,
-                    });
+                    ShowOptionsList();
                 };
         }
 
@@ -41,6 +33,38 @@ namespace PerpetualEngine.Forms
             }
         }
 
+        void ShowOptionsList()
+        {
+            var optionList = new List<Option>();
+            foreach (var key in Options.Keys)
+                optionList.Add(new Option{ Value = Options[key], Key = key });
+            var listView = new ListView {
+                ItemsSource = optionList,
+                ItemTemplate = new DataTemplate(typeof(OptionCell)),
+            };
+            listView.ItemTapped += (sender, e) => {
+                Value = (listView.SelectedItem as Option).Key;
+                ParentView.Navigation.PopAsync();
+            };
+            ParentView.Navigation.PushAsync(new ContentPage {
+                Content = listView,
+            });
+        }
+
+        class OptionCell: TextCell
+        {
+            public OptionCell()
+            {
+                this.SetBinding(TextCell.TextProperty, "Value");
+            }
+        }
+
+        class Option
+        {
+            public string Value{ get; set; }
+
+            public string Key{ get; set; }
+        }
     }
     
 }
