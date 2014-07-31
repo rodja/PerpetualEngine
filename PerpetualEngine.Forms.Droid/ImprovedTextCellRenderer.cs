@@ -13,6 +13,7 @@ namespace PerpetualEngine.Forms
     {
         protected override global::Android.Views.View GetCellCore(Cell item, global::Android.Views.View convertView, ViewGroup parent, Context context)
         {
+            // hide empty TableSection headings
             var view = base.GetCellCore(item, convertView, parent, context) as ViewGroup;
             if (String.IsNullOrEmpty((item as TextCell).Text)) {
                 view.Visibility = ViewStates.Gone;

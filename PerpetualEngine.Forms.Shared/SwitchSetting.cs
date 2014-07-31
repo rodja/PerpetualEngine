@@ -2,13 +2,13 @@ using Xamarin.Forms;
 
 namespace PerpetualEngine.Forms
 {
-
     public class SwitchSetting: Setting
     {
-        public SwitchSetting(string key, string title) : base(key, title)
+        public SwitchSetting(string title, string key = null) : base(title, key)
         {
             var layout = (View as StackLayout);
             layout.Orientation = StackOrientation.Horizontal;
+
             var toggle = new Switch();
             toggle.Toggled += (sender, e) => {
                 Value = e.Value ? "on" : "off";

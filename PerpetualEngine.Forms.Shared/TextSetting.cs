@@ -2,7 +2,7 @@ namespace PerpetualEngine.Forms
 {
     public class TextSetting: Setting
     {
-        public TextSetting(string key, string title) : base(key, title)
+        public TextSetting(string title, string key = null) : base(title, key)
         {
         }
     }

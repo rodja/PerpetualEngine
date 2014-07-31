@@ -1,10 +1,10 @@
-﻿using Xamarin.Forms;
+﻿using System;
 using PerpetualEngine.Storage;
-using System;
+using Xamarin.Forms;
 
 namespace PerpetualEngine.Forms
 {
-    public class Setting : ViewCell
+    public abstract class Setting : ViewCell
     {
         SimpleStorage storage;
 
@@ -14,16 +14,17 @@ namespace PerpetualEngine.Forms
 
         protected Label Description;
 
-        public Setting(string key, string title)
+        bool deleteStorageOnDisappearing;
+
+        public Action TapAction = delegate {
+        };
+
+        protected Setting(string title, string key = null)
         {
             Key = key;
-            this.Title = title;
+            Title = title;
 
             storage = SimpleStorage.EditGroup("settings");
-
-            Tapped += delegate {
-                RendererTapAction();
-            };
 
             var view = new StackLayout();
             view.Padding = 8;
@@ -38,18 +39,35 @@ namespace PerpetualEngine.Forms
                 HorizontalOptions = LayoutOptions.FillAndExpand,
             });
             Description = new Label();
+            if (Device.OS == TargetPlatform.iOS) {
+                view.Orientation = StackOrientation.Horizontal;
+                Description.TextColor = Color.Gray;
+            }
             view.Children.Add(Description);
+            Tapped += delegate {
+                TapAction();
+            };
             View = view;
         }
 
         protected override void OnAppearing()
         {
-            // apply current stored value to the ui
+            if (Key == null) {
+                Key = Guid.NewGuid().ToString();
+                deleteStorageOnDisappearing = true;
+            }
             Value = storage.Get(Key, "");
+
             base.OnAppearing();
         }
 
-        public Action RendererTapAction;
+        protected override void OnDisappearing()
+        {
+            if (deleteStorageOnDisappearing)
+                storage.DeleteAsync(Key);
+
+            base.OnDisappearing();
+        }
 
         virtual public string Value {
             get {

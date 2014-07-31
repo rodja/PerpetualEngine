@@ -9,20 +9,26 @@ namespace PerpetualEngine.Demo
         {
             Title = "Perpetual Engine";
 
-            var username = new TextSetting("username", "Username Input Example");
-            username.OnValueChanged += delegate {
-                Msg.Log(this, "username changed");
+            var textSetting1 = new TextSetting("Text Setting 1", "textSetting1");
+            textSetting1.OnValueChanged += delegate {
+                Msg.Log(this, "textSetting1 changed");
             };
-            var fruit = new SelectionSetting("fruit", "Which Fruit?") { Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions() };
-            fruit.OnValueChanged += delegate {
-                Msg.Log(this, "fruit changed");
+
+            var selectionSetting1 = new SelectionSetting("Selection Setting 1", "selectionSetting1") {
+                Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions(),
             };
-            var car = new SelectionSetting("cars", "Which Car?");
-            var toggle = new SwitchSetting("demo_switch", "Demo Switch");
-            toggle.OnValueChanged += delegate {
-                Msg.Log(this, "toggle changed");
-                car.Options = new {a = "A", b = "B"}.ToOptions();
+            selectionSetting1.OnValueChanged += delegate {
+                Msg.Log(this, "selectionSetting1 changed");
             };
+
+            var selectionSetting2 = new SelectionSetting("Selection Setting 2", "selectionSetting2");
+
+            var switchSetting1 = new SwitchSetting("Switch Setting 1 (persistent)", "switchSetting1");
+            switchSetting1.OnValueChanged += delegate {
+                Msg.Log(this, "switchSetting1 changed");
+                selectionSetting2.Options = new {a = "A", b = "B"}.ToOptions();
+            };
+            var switchSetting2 = new SwitchSetting("Switch Setting 2 (not persistent)");
 
             Content = new StackLayout {
                 Orientation = StackOrientation.Vertical,
@@ -31,10 +37,11 @@ namespace PerpetualEngine.Demo
                         HasUnevenRows = true,
                         Root = new TableRoot {
                             new TableSection {
-                                username,
-                                fruit,
-                                car,
-                                toggle,
+                                textSetting1,
+                                selectionSetting1,
+                                selectionSetting2,
+                                switchSetting1,
+                                switchSetting2,
                             },
                         },
                     },

@@ -1,19 +1,27 @@
-﻿using System;
-using Xamarin.Forms.Platform.Android;
-using Android.Views;
+﻿using Android.App;
 using Android.Content;
-using Android.App;
+using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using PerpetualEngine.Forms;
 
 [assembly: ExportRenderer(typeof(TextSetting), typeof(TextSettingRenderer))]
 
 namespace PerpetualEngine.Forms
 {
-    public class TextSettingRenderer : SettingsRenderer
+    public class TextSettingRenderer : ViewCellRenderer
     {
-        override protected Dialog CreateDialog(Context context)
+        protected override global::Android.Views.View GetCellCore(Cell item, global::Android.Views.View convertView, ViewGroup parent, Context context)
+        {
+            (item as Setting).TapAction = delegate {
+                ShowTextDialog(context);
+            };
+
+            return base.GetCellCore(item, convertView, parent, context);
+        }
+
+        void ShowTextDialog(Context context)
         {
             var setting = Cell as TextSetting;
             var builder = new AlertDialog.Builder(context);
@@ -25,13 +33,13 @@ namespace PerpetualEngine.Forms
             builder.SetPositiveButton("Ok", new TextApplier(input, setting));
             var dialog = builder.Create();
             dialog.Window.SetSoftInputMode(SoftInput.StateVisible);
-            return dialog;
+            dialog.Show();
         }
 
         class TextApplier: Java.Lang.Object, IDialogInterfaceOnClickListener
         {
-            EditText input;
-            TextSetting setting;
+            readonly EditText input;
+            readonly TextSetting setting;
 
             public TextApplier(EditText input, TextSetting setting)
             {
@@ -44,10 +52,5 @@ namespace PerpetualEngine.Forms
                 setting.Value = input.Text;
             }
         }
-
-       
     }
-
-
 }
-

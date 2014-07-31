@@ -2,18 +2,27 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using PerpetualEngine.Forms;
 
 [assembly: ExportRenderer(typeof(SelectionSetting), typeof(SelectionSettingsRenderer))]
 
 namespace PerpetualEngine.Forms
 {
-
-    public class SelectionSettingsRenderer : SettingsRenderer
+    public class SelectionSettingsRenderer : ViewCellRenderer
     {
+        protected override global::Android.Views.View GetCellCore(Cell item, global::Android.Views.View convertView, ViewGroup parent, Context context)
+        {
+            (item as Setting).TapAction = delegate {
+                ShowSelectionDialog(context);
+            };
 
-        override protected Dialog CreateDialog(Context context)
+            return base.GetCellCore(item, convertView, parent, context);
+        }
+
+        void ShowSelectionDialog(Context context)
         {
             var setting = Cell as SelectionSetting;
             var builder = new AlertDialog.Builder(context);
@@ -23,7 +32,7 @@ namespace PerpetualEngine.Forms
                 Values = options.Keys.ToList<string>(),
                 Setting = setting
             });
-            return builder.Create();
+            builder.Create().Show();
         }
 
         public class SelectionApplier: Java.Lang.Object, IDialogInterfaceOnClickListener

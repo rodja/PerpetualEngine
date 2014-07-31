@@ -6,13 +6,13 @@ using Xamarin.Forms.Platform.Android;
 
 namespace PerpetualEngine.Forms
 {
-    abstract public class SettingsRenderer :ViewCellRenderer
+    abstract public class SettingsRenderer: ViewCellRenderer
     {
         protected override global::Android.Views.View GetCellCore(Cell item, global::Android.Views.View convertView, ViewGroup parent, Context context)
         {
             var view = base.GetCellCore(item, convertView, parent, context) as ViewGroup;
 
-            (item as Setting).RendererTapAction = delegate {
+            item.Tapped += delegate {
                 var dialog = CreateDialog(context);
                 dialog.Window.SetSoftInputMode(SoftInput.StateVisible);
                 dialog.Show();
