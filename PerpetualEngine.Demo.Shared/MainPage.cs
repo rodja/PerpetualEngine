@@ -1,7 +1,5 @@
-using System;
 using Xamarin.Forms;
 using PerpetualEngine.Forms;
-using System.Collections.Generic;
 
 namespace PerpetualEngine.Demo
 {
@@ -36,7 +34,7 @@ namespace PerpetualEngine.Demo
                                 username,
                                 fruit,
                                 car,
-//                                toggle, // BUG: yields empty, than black page (only TableView within StackLayout)
+                                toggle,
                             },
                         },
                     },

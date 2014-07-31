@@ -1,9 +1,8 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace PerpetualEngine.Demo
 {
-    public class App
+    public static class App
     {
         public static Page GetMainPage()
         {   
@@ -11,4 +10,3 @@ namespace PerpetualEngine.Demo
         }
     }
 }
-

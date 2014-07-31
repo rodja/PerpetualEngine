@@ -4,7 +4,6 @@ using System;
 
 namespace PerpetualEngine.Forms
 {
-
     public class Setting : ViewCell
     {
         SimpleStorage storage;
