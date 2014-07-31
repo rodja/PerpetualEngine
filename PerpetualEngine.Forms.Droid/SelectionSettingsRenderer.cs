@@ -26,7 +26,7 @@ namespace PerpetualEngine.Forms
         {
             var setting = Cell as SelectionSetting;
             var builder = new AlertDialog.Builder(context);
-            builder.SetTitle(setting.Title);
+            builder.SetTitle(setting.Title.Text);
             var options = setting.Options;
             builder.SetItems(options.Values.ToArray<string>(), new SelectionApplier {
                 Values = options.Keys.ToList<string>(),

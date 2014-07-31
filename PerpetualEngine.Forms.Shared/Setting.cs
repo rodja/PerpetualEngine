@@ -8,9 +8,9 @@ namespace PerpetualEngine.Forms
     {
         SimpleStorage storage;
 
-        public string Title { get; private set; }
-
         public string Key { get; private set; }
+
+        public Label Title { get; private set; }
 
         protected Label Description;
 
@@ -21,15 +21,10 @@ namespace PerpetualEngine.Forms
 
         protected Setting(string title, string key = null)
         {
-            Key = key;
-            Title = title;
-
             storage = SimpleStorage.EditGroup("settings");
+            Key = key;
 
-            var view = new StackLayout();
-            view.Padding = 8;
-            view.Spacing = 0;
-            view.Children.Add(new Label {
+            Title = new Label {
                 Text = title,
                 Font = Device.OnPlatform<Font>(
                     Font.SystemFontOfSize(NamedSize.Medium),
@@ -37,17 +32,23 @@ namespace PerpetualEngine.Forms
                     Font.SystemFontOfSize(NamedSize.Medium)
                 ),
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-            });
-            Description = new Label();
-            if (Device.OS == TargetPlatform.iOS) {
-                view.Orientation = StackOrientation.Horizontal;
-                Description.TextColor = Color.Gray;
-            }
-            view.Children.Add(Description);
+            };
+            Description = new Label {
+                TextColor = Device.OS == TargetPlatform.iOS ? Color.Gray : Color.Black,
+            };
+
+            View = new StackLayout {
+                Orientation = Device.OS == TargetPlatform.iOS ? StackOrientation.Horizontal : StackOrientation.Vertical,
+                Children = {
+                    Title,
+                    Description,
+                },
+                Padding = 8,
+                Spacing = 0,
+            };
             Tapped += delegate {
                 TapAction();
             };
-            View = view;
         }
 
         protected override void OnAppearing()

@@ -25,7 +25,7 @@ namespace PerpetualEngine.Forms
         {
             var setting = Cell as TextSetting;
             var builder = new AlertDialog.Builder(context);
-            builder.SetTitle(setting.Title);
+            builder.SetTitle(setting.Title.Text);
             var input = new EditText(context);
             input.Text = setting.Value;
             input.SelectAll();
