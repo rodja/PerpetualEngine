@@ -1,11 +1,8 @@
 ﻿using System;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
-using Android.Views;
-using Android.App;
 using Android.Content;
-using System.Collections.Generic;
-using System.Linq;
+using Android.Views;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using PerpetualEngine.Forms;
 
 [assembly: ExportRenderer(typeof(TextCell), typeof(ImprovedTextCellRenderer))]

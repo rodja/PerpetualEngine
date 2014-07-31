@@ -1,9 +1,8 @@
-﻿using System;
-using Xamarin.Forms.Platform.Android;
+﻿using Android.App;
 using Android.Content;
-using Xamarin.Forms;
 using Android.Views;
-using Android.App;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace PerpetualEngine.Forms
 {

@@ -1,11 +1,8 @@
-using System;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
-using Android.Views;
-using Android.App;
-using Android.Content;
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
+using Android.Content;
+using Xamarin.Forms;
 using PerpetualEngine.Forms;
 
 [assembly: ExportRenderer(typeof(SelectionSetting), typeof(SelectionSettingsRenderer))]
