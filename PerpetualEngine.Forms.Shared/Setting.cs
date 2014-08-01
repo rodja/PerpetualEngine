@@ -14,7 +14,7 @@ namespace PerpetualEngine.Forms
 
         protected Label Description;
 
-        bool deleteStorageOnDisappearing;
+        bool isPersistent = true;
 
         public Action TapAction = delegate {
         };
@@ -23,6 +23,10 @@ namespace PerpetualEngine.Forms
         {
             storage = SimpleStorage.EditGroup("settings");
             Key = key;
+            if (Key == null) {
+                Key = Guid.NewGuid().ToString();
+                isPersistent = false;
+            }
 
             Title = new Label {
                 Text = title,
@@ -53,21 +57,18 @@ namespace PerpetualEngine.Forms
 
         protected override void OnAppearing()
         {
-            if (Key == null) {
-                Key = Guid.NewGuid().ToString();
-                deleteStorageOnDisappearing = true;
-            }
-            Value = storage.Get(Key, "");
-
             base.OnAppearing();
+
+            Value = Value;
+
+//            if (Title.Text.StartsWith("Text 4"))
+//                return;
         }
 
-        protected override void OnDisappearing()
+        ~Setting()
         {
-            if (deleteStorageOnDisappearing)
-                storage.DeleteAsync(Key);
-
-            base.OnDisappearing();
+            if (!isPersistent)
+                storage.Delete(Key);
         }
 
         virtual public string Value {

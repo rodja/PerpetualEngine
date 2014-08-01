@@ -34,6 +34,14 @@ namespace PerpetualEngine.Demo
             };
             var switch2 = new SwitchSetting("Switch 2 (not persistent)");
 
+            var text2 = new TextSetting("Text 2 (persistent)", "text2");
+
+            var text3 = new TextSetting("Text 3 (not persistent)");
+
+            var text4 = new TextSetting("Text 4 (not persistent)") {
+                Value = "test",
+            };
+
             Content = new StackLayout {
                 Orientation = StackOrientation.Vertical,
                 Children = {
@@ -46,6 +54,9 @@ namespace PerpetualEngine.Demo
                                 selection2,
                                 switch1,
                                 switch2,
+                                text2,
+                                text3,
+                                text4,
                             },
                         },
                     },
