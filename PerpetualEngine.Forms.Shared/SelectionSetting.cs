@@ -6,6 +6,8 @@ namespace PerpetualEngine.Forms
 {
     public class SelectionSetting: Setting
     {
+        public bool FreeText { get; set; }
+
         public IDictionary<string, string> Options = new {}.ToOptions();
 
         public SelectionSetting(string title, string key = null) : base(title, key)
@@ -25,10 +27,17 @@ namespace PerpetualEngine.Forms
                     base.Value = "";
                     Description.Text = "";
                 } else {
-                    if (!Options.ContainsKey(value))
-                        value = Options.Keys.First();
-                    base.Value = value;
-                    Description.Text = Options[value];
+                    if (FreeText) {
+                        if (Options.ContainsKey(value))
+                            value = Options[value];
+                        base.Value = value;
+                        Description.Text = value;
+                    } else {
+                        if (!Options.ContainsKey(value))
+                            value = Options.Keys.First();
+                        base.Value = value;
+                        Description.Text = Options[value];
+                    }
                 }
             }
         }

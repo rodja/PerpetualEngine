@@ -26,6 +26,14 @@ namespace PerpetualEngine.Demo
                 Msg.Log(this, "selection2 changed: " + selection2.Value);
             };
 
+            var selection3 = new SelectionSetting("Selection 3 (free text)", "selection3") {
+                FreeText = true,
+                Options = new { id1 = "banana", id2 = "apple", id3 = "cookies" }.ToOptions(),
+            };
+            selection3.OnValueChanged += delegate {
+                Msg.Log(this, "selection3 changed: " + selection3.Value);
+            };
+
             var switch1 = new SwitchSetting("Switch 1 (persistent)", "switch1");
             switch1.OnValueChanged += delegate {
                 Msg.Log(this, "switch1 changed: " + switch1.Value);
@@ -52,6 +60,7 @@ namespace PerpetualEngine.Demo
                                 text1,
                                 selection1,
                                 selection2,
+                                selection3,
                                 switch1,
                                 switch2,
                                 text2,

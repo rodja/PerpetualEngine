@@ -1,14 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Views;
+using Android.Views.InputMethods;
+using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using PerpetualEngine.Forms;
-using Android.Widget;
-using System;
-using Android.OS;
 
 [assembly: ExportRenderer(typeof(SelectionSetting), typeof(SelectionSettingsRenderer))]
 
@@ -33,8 +34,20 @@ namespace PerpetualEngine.Forms
             var options = setting.Options;
             AlertDialog dialog = null;
             var viewGroup = new TableLayout(context);
-            var editText = new EditText(context);
-            viewGroup.AddView(editText);
+            if (setting.FreeText) {
+                var editText = new EditText(context) {
+                    Text = setting.Value,
+                };
+                editText.SetSingleLine();
+                editText.SetSelectAllOnFocus(true);
+                editText.EditorAction += (sender, e) => {
+                    if (e.ActionId == ImeAction.Done) {
+                        setting.Value = editText.Text;
+                        dialog.Dismiss();
+                    }
+                };
+                viewGroup.AddView(editText);
+            }
             for (var i = 0; i < options.Values.Count; i++) {
                 var view = new TextView(context) {
                     Text = options.Values.ElementAt(i),
@@ -53,26 +66,10 @@ namespace PerpetualEngine.Forms
                 };
             }
             builder.SetView(viewGroup);
-
-//            builder.SetItems(options.Values.ToArray<string>(), new SelectionApplier {
-//                Values = options.Keys.ToList<string>(),
-//                Setting = setting
-//            });
-
             dialog = builder.Create();
+            if (setting.FreeText)
+                dialog.Window.SetSoftInputMode(SoftInput.StateVisible);
             dialog.Show();
         }
-
-        //        public class SelectionApplier: Java.Lang.Object, IDialogInterfaceOnClickListener
-        //        {
-        //            public List<string> Values;
-        //            public SelectionSetting Setting;
-        //
-        //            public void OnClick(IDialogInterface dialog, int which)
-        //            {
-        //                Setting.Value = Values[which];
-        //            }
-        //        }
-
     }
 }

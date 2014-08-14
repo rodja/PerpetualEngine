@@ -183,7 +183,7 @@ Global
 		{F000EC47-2574-4EA2-8237-0B4BA37C1002}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = PerpetualEngine.Demo.iOS\PerpetualEngine.Demo.iOS.csproj
+		StartupItem = PerpetualEngine.Demo.Droid\PerpetualEngine.Demo.Droid.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
