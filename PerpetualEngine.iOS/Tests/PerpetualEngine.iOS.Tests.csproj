@@ -95,6 +95,7 @@
     <Compile Include="AsyncTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\PerpetualEngine.iOS.csproj">
       <Project>{53E80655-9589-4B19-8A78-51084EE977E8}</Project>
