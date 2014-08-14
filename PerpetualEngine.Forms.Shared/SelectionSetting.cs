@@ -44,6 +44,18 @@ namespace PerpetualEngine.Forms
 
         void ShowOptionsList()
         {
+            var stack = new StackLayout();
+            if (FreeText) {
+                var entry = new Entry {
+                    Placeholder = Value,
+                };
+                entry.Completed += (sender, e) => {
+                    Value = entry.Text;
+                    ParentView.Navigation.PopAsync();
+                };
+                stack.Children.Add(entry);
+            }
+
             var optionList = new List<Option>();
             foreach (var key in Options.Keys)
                 optionList.Add(new Option{ Value = Options[key], Key = key });
@@ -55,8 +67,10 @@ namespace PerpetualEngine.Forms
                 Value = (listView.SelectedItem as Option).Key;
                 ParentView.Navigation.PopAsync();
             };
+            stack.Children.Add(listView);
+            
             ParentView.Navigation.PushAsync(new ContentPage {
-                Content = listView,
+                Content = stack,
             });
         }
 
