@@ -27,5 +27,14 @@ namespace PerpetualEngine
         /// Return if the timer is currently Running.
         /// </summary>
         public abstract bool IsRunning();
+
+        /// <summary>
+        /// Tells timer not to handle background/foreground transition of app.
+        /// Currently only supported on iOS.
+        /// </summary>
+        public virtual void DisableAutomaticBackgroundHandling()
+        {
+        }
+
     }
 }
