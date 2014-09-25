@@ -85,15 +85,16 @@ namespace PerpetualEngine
         }
 
         [Test()]
-        public async void TestPostFileAsync()
+        public void TestPostFileAsync()
         {
             var file = GenerateFilePath();
             httpClient.Get(imgUrl, file);
-            var response = await httpClient.PostAsync(postUrl, file);
+            var response = httpClient.PostAsync(postUrl, file).Result;
             dynamic json = JObject.Parse(response);
             Assert.NotNull(json["headers"]["Content-Type"], "should have content type");
             Assert.That(json["headers"]["Content-Type"].ToString(), Is.StringStarting("multipart/form-data; boundary="));
-            Assert.That(json["files"].Count, Is.EqualTo(1));
+            string f = json["files"]["file"].ToString();
+            Assert.That(f, Is.StringStarting("data:application/octet-stream;base64,iVBOR"));
         }
 
         [Test()]
