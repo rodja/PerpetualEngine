@@ -20,5 +20,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\JsonPersistingList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\PersistentList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\SimpleStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PerformanceTimer.cs" />
   </ItemGroup>
 </Project>
