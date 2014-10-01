@@ -137,5 +137,13 @@ namespace PerpetualEngine
 
             return dictionary;
         }
+
+        public static double Uniform(
+            this Random random,
+            double minValue,
+            double maxValue)
+        {
+            return random.NextDouble() * (maxValue - minValue) + minValue;
+        }
     }
 }
