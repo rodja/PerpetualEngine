@@ -19,6 +19,8 @@ namespace PerpetualEngine
 
     public class iOSSimpleTimer : SimpleTimer
     {
+        public static bool UseApplicationActivationListener = true;
+
         struct TimerTemplate
         {
             public TimeSpan TimeSpan;
@@ -34,19 +36,22 @@ namespace PerpetualEngine
         {
             timers = new List<NSTimer>();
             templates = new List<TimerTemplate>();
-            applicationActivationListener = new ApplicationActivationListener();
-            applicationActivationListener.OnActivatedAction = () => {
-                TriggerTimerActions();
-                RescheduleTimers();
-            };
-            applicationActivationListener.OnWillResignActiveAction = () => {
-                UnscheduleTimers();
-            };
+            if (UseApplicationActivationListener) {
+                applicationActivationListener = new ApplicationActivationListener();
+                applicationActivationListener.OnActivatedAction = () => {
+                    TriggerTimerActions();
+                    RescheduleTimers();
+                };
+                applicationActivationListener.OnWillResignActiveAction = () => {
+                    UnscheduleTimers();
+                };
+            }
         }
 
         ~ iOSSimpleTimer()
         {
-            applicationActivationListener.ClearActions();
+            if (UseApplicationActivationListener)
+                applicationActivationListener.ClearActions();
         }
 
         /// <summary>calls the given action with the given time span as long as the App is visible on the screen.</summary>
