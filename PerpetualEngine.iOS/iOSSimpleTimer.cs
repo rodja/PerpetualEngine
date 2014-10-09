@@ -79,6 +79,11 @@ namespace PerpetualEngine
             return running;
         }
 
+        public override void DisableAutomaticBackgroundHandling()
+        {
+            applicationActivationListener.ClearActions();
+        }
+
         void UnscheduleTimers()
         {
             foreach (var timer in timers) {
