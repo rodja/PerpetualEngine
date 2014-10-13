@@ -22,10 +22,10 @@ namespace PerpetualEngine
         /// <summary>
         /// Stop and print performance measurement with the label used in "Start" command.
         /// </summary>
-        public static void Stop(string label)
+        public static void Stop(string label, string msg = "")
         {
             if (times.ContainsKey(label))
-                Console.WriteLine(label + " " + (DateTime.Now - times[label]).TotalMilliseconds + " ms");
+                Console.WriteLine(label + " " + msg + " " + (DateTime.Now - times[label]).TotalMilliseconds + " ms ");
         }
 
         /// <summary>
