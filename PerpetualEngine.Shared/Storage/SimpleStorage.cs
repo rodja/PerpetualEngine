@@ -189,7 +189,15 @@ namespace PerpetualEngine.Storage
             byte[] bytes = Convert.FromBase64String(str);
 
             using (MemoryStream stream = new MemoryStream(bytes)) {
-                return (T)new BinaryFormatter().Deserialize(stream);
+                try {
+                    Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
+                    var formatter = new BinaryFormatter();
+                    object result = formatter.Deserialize(stream);
+                    return (T)result;
+                } catch (Exception e) {
+                    Msg.Log("SimpleStorage", e.Message);
+                    return default(T);
+                }
             }
         }
     }

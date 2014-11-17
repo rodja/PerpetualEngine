@@ -48,6 +48,7 @@
     <Compile Include="HttpClientTests.cs" />
     <Compile Include="Storage\FileCacheTests.cs" />
     <Compile Include="HelpfulExtensionTests.cs" />
+    <Compile Include="Storage\PersistentStringsTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

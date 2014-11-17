@@ -22,5 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\SimpleStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PerformanceTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EmbeddedResourceLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\PersistentStrings.cs" />
   </ItemGroup>
 </Project>

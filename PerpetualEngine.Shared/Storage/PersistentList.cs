@@ -15,28 +15,32 @@ namespace PerpetualEngine.Storage
 
         public PersistentList(string editGroup, Func<T, string> serialize = null, Func<string, T> deserialize = null)
         {
-            storage = SimpleStorage.EditGroup(editGroup);
-            ids = storage.Get<List<string>>(idListKey) ?? new List<string>();
+            try {
+                storage = SimpleStorage.EditGroup(editGroup);
+                ids = storage.Get<List<string>>(idListKey) ?? new List<string>();
 
-            var broken = new List<string>();
-            foreach (var i in ids) {
-                var item = deserialize == null ? storage.Get<T>(i) : deserialize(storage.Get(i));
-                if (item == null) {
-                    broken.Add(i);
-                    continue;
+                var broken = new List<string>();
+                foreach (var i in ids) {
+                    var item = deserialize == null ? storage.Get<T>(i) : deserialize(storage.Get(i));
+                    if (item == null) {
+                        broken.Add(i);
+                        continue;
+                    }
+                    items.Add(item);
                 }
-                items.Add(item);
-            }
 
-            if (broken.Count > 0) {
-                foreach (var id in broken) {
-                    storage.Delete(id);
-                    ids.Remove(id);
-                    storage.Put(idListKey, ids);
+                if (broken.Count > 0) {
+                    foreach (var id in broken) {
+                        storage.Delete(id);
+                        ids.Remove(id);
+                        storage.Put(idListKey, ids);
+                    }
                 }
-            }
 
-            CustomSerializer = serialize;
+                CustomSerializer = serialize;
+            } catch (Exception e) {
+                Msg.Log(this, e.Message);
+            }
         }
 
         Func<T, string> CustomSerializer = null;
