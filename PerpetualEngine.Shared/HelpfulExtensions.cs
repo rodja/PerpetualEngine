@@ -145,5 +145,13 @@ namespace PerpetualEngine
         {
             return random.NextDouble() * (maxValue - minValue) + minValue;
         }
+
+        /// <summary>
+        /// Used to call an async method and emedately continue execution without generating a compiler warning
+        /// </summary>
+        /// (see http://stackoverflow.com/questions/22629951/suppressing-warning-cs4014-because-this-call-is-not-awaited-execution-of-the)
+        public static void Forget(this Task task)
+        {
+        }
     }
 }
