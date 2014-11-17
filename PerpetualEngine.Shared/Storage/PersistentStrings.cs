@@ -37,6 +37,18 @@ namespace PerpetualEngine.Storage
             Insert(list.Count, value);
         }
 
+        public virtual void Remove(string item)
+        {
+            list.Remove(item);
+            storage.Put("persistentStrings", list);
+        }
+
+        public virtual void Clear()
+        {
+            storage.Delete("persistentStrings");
+            list.Clear();
+        }
+
         public string ElementAt(int index)
         {
             return list.ElementAt(index);
