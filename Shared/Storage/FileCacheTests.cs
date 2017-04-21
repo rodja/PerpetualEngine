@@ -35,7 +35,7 @@ namespace PerpetualEngine.Storage
             FileCache.Put("1", path => {
                 Console.WriteLine("fetching new image");
                 fetchCount++;
-                new HttpClient().Get("http://perpetual-mobile.de/bilder/pavillon-aussen-1200px.jpg", path);
+                new HttpClient().Get("http://www.perpetual-mobile.de/wp-content/uploads/2015/04/FH-Finnholz-9-3-1024x678.jpg", path);
             });
             Task.Run(async delegate {
                 var p = await FileCache.Get("1");
